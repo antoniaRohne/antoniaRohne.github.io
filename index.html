@@ -10,6 +10,7 @@
             file.createWriter(function(content){
                 var blob = new Blob(["Testitest"], {type:"text/plain"});
                 content.write(blob);
+                console.log("Been there done that");
             })
         });
     }
