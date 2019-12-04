@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Umfrage Playable Ad</title>
+<script>
+    window.webkitRequestFileSystem(window.TEMPORARY, 1024*1024, SaveFile);
+    
+    function SaveFile(localstorage){
+        localstorage.root.getFile("Ergebnisse.txt", {create:true}, function(file){
+            file.createWriter(function(content){
+                var blob = new Blob(["Testitest"], {type:"text/plain"});
+                content.write(blob);
+            })
+        });
+    }
+</script>
+</head>
+<body>
+    <iframe src="PlayableHTML.html" height="640" width="369" scrolling="no"></iframe>
+</body>
+    
+</html>
