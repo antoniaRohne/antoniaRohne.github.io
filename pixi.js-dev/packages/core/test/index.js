@@ -1,0 +1,15 @@
+require('./BaseTexture');
+require('./Texture');
+require('./Renderer');
+require('./MaskSystem');
+require('./TextureSystem');
+require('./BatchRenderer');
+require('./Geometry');
+require('./CanvasResource');
+require('./ImageBitmapResource');
+require('./ImageResource');
+require('./SVGResource');
+require('./VideoResource');
+require('./ArrayResource');
+require('./autoDetectResource');
+require('./CubeResource');
