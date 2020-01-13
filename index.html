@@ -1,23 +1,110 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Umfrage Playable Ad</title>
-<script>
-    window.webkitRequestFileSystem(window.TEMPORARY, 1024*1024, SaveFile);
+<title>Umfrage Playable Ad</title> 
+<style>
+    .button {
+      background-color: #4CAF50; 
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+      font-size: 16px;
+      margin-left:auto;
+      margin-right:auto;
+    }
     
-    function SaveFile(localstorage){
-        localstorage.root.getFile("Ergebnisse.txt", {create:true}, function(file){
-            file.createWriter(function(content){
-                var blob = new Blob(["Testitest"], {type:"text/plain"});
-                content.write(blob);
-                console.log("Been there done that");
-            })
-        });
+    .replayButton{
+        background-color: #008CBA; 
+    }
+    
+    .hidden{
+        visibility: hidden;
+    }
+    
+    body{
+        font-family: sans-serif;
+        background-color: #FFFACD;
+    }
+    
+    p{
+        width:40%; 
+        display:block;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    
+    iframe{
+        display:block;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    
+    h2{
+        font-style: italic;
+    }
+    
+</style>
+<script>
+    
+    let htmlArray = [
+        "PlayableHTMLHeart.html",
+        "PlayableHTMLFail.html",
+        "PlayableHTMLCoins.html",
+    ]
+    let current = 0;
+    
+    function loadNextPlayable(){
+        let iframe = document.getElementById("PlayableAd"); 
+        if(current <2){
+            current++;
+            if(current == 2){
+                document.querySelectorAll(".button")[0].innerHTML = "Zur Umfrage / To survey";
+            }   
+            let name = (current+1).toString();
+            document.getElementById("title").innerHTML = name +  ". Playable Ad";
+        }else{
+            iframe.parentNode.removeChild(iframe);
+            document.getElementById("survey").classList.remove("hidden"); 
+            document.querySelectorAll(".button").forEach(element => element.parentNode.removeChild(element));
+            document.getElementById("title").innerHTML = "Survey/ Umfrage";
+        }
+        iframe.src = htmlArray[current];    
+        
+    }
+    
+    function replayPlayable(){
+        let iframe = document.getElementById("PlayableAd"); 
+        iframe.src = htmlArray[current]; 
+    }
+    
+    function startPlayables(){
+        document.getElementById("PlayableAd").classList.remove("hidden");
+        document.getElementById("beginning").parentNode.removeChild(document.getElementById("beginning"));
+        let name = (current+1).toString();
+        document.getElementById("title").innerHTML = name +  ". Playable Ad";
+        document.querySelectorAll(".button").forEach(element => element.classList.remove("hidden"));
     }
 </script>
 </head>
-<body>
-    <iframe src="PlayableHTML.html" height="640" width="369" scrolling="no"></iframe>
+<body> 
+    <h1 id="title" align="center">Herzlichen Willkommen zur Umfrage für meine Bachelorarbeit!</h1>
+    <container id="beginning">
+    <h2 align="center">"Spielbare Werbung - Die Zukunft der Werbung in Mobile Games"</h2>
+    <p align="center">Für meine Arbeit habe ich mich intensiv mit dem Werbeformat Playable Ads beschäftigt.
+    Um weitere Informationen über die Wirksamkeit und Attraktivität dieses Formates zu erhalten, habe ich selber 3 Playable Ads erstellt 
+    und werde euch diese nun vorstellen. Am Ende gibt es eine Umfrage, die ich euch bitte auszufüllen!</p>
+    <button align="center" class="button" onclick="startPlayables(this)">Start</button>
+    </container>
+    <br>
+    <iframe class="hidden" id="PlayableAd" src="PlayableHTMLHeart.html" height="720" width="480" scrolling="no"></iframe>
+    <br>
+    <button class="button hidden" onclick="loadNextPlayable()">Next Playable! >></button>
+    <button class="button hidden replayButton" onclick="replayPlayable()">Replay Playable!</button>
+    <br>
+    <iframe id="survey" class="hidden" src="https://docs.google.com/forms/d/e/1FAIpQLSdZCt8qdaXEU6SY_8v_ZKLkgt_Ae86fepkC5hoozoCn8cRjpQ/viewform?embedded=true" width="640" height="420" frameborder="0" marginheight="0" marginwidth="0">Wird geladen…</iframe>
 </body>
     
 </html>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Playable Ad Bachelorarbeit</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.3/pixi.min.js"></script>
+<script src="charm.js"></script>
+</head>
+<body>
+</body>
+
+
+<script>
+    const charm = new Charm(PIXI);
+    const app = new PIXI.Application({antialias: true});
+    document.body.appendChild(app.view);
+    app.renderer.view.style.position = "absolute";
+    app.renderer.view.style.display = "block";
+    app.renderer.autoDensity = true;
+    app.renderer.resize(window.innerWidth, window.innerHeight);
+    const scene = new PIXI.Container();
+    app.stage.addChild(scene); 
+    scene.x = app.screen.width / 2;
+    scene.y = app.screen.height / 2;
+    scene.pivot.x = scene.width / 2;
+    scene.pivot.y = scene.height / 2;
+    
+    let sheet;
+    let instruction= {};
+    let tamagotchi;
+    let UI;
+    let height;
+    let width;
+    let background;
+    let money = {};
+    money.amount = 0;
+    money.maxAmount = 9;
+    let hats;
+    let framesTillClean = 200;
+    let tamagotchiType;
+    let direction;
+    let style;
+    
+    const UIinteractionTypes = {   
+      eat: 0,
+      play: 1,
+      clean: 2
+    };
+    
+    PIXI.Loader.shared.add("Images/SpritesheetCoins/sprites.json").load(setup);
+    
+    function setup() {
+        sheet = PIXI.Loader.shared.resources["Images/SpritesheetCoins/sprites.json"].spritesheet;
+        startup();
+    }
+    
+    function startup(){
+        
+        width = app.screen.width;
+        height = app.screen.height;
+        
+        background = new PIXI.Sprite(sheet.textures["Start.png"]);
+        background.anchor.set(0.5);
+        background.scale.set(1.1/2);
+        background.height = app.screen.height;
+        background.width = -app.screen.width*2;
+        scene.addChild(background);
+ 
+        randomTrueFalse() ? tamagotchiType = "Cat" : tamagotchiType = "Dog";
+        
+        tamagotchi = new PIXI.AnimatedSprite(sheet.animations["Idle" + tamagotchiType]);
+        tamagotchi.anchor.set(0.5);
+        tamagotchi.scale.set(1/2);
+        tamagotchi.animationSpeed = 0.12;
+        tamagotchi.play();
+        scene.addChild(tamagotchi); 
+        
+        instruction.graphics = new PIXI.Graphics();
+
+        instruction.graphics.lineStyle(2, 0x000000, 1);
+        instruction.graphics.beginFill(0xF37335, 0.6);
+        instruction.graphics.drawRoundedRect(-225,height/5, 450, 70, 10);
+        instruction.graphics.endFill();
+        
+        scene.addChild(instruction.graphics);
+        
+        style = new PIXI.TextStyle({
+            fill: "white",
+            align: "center",
+            fontFamily: "Verdana, Geneva, sans-serif",
+            fontSize: 19,
+            fontVariant: "small-caps",
+            wordWrap: true,
+            wordWrapWidth: 400
+        });
+        
+        let instText = new PIXI.Text('Earn money by taking care of your pet and unlock a new pet friend!',style);
+        instText.anchor.set(0.5);
+        instText.position.set(0, height/4.1);
+        instruction.text = instText;
+        scene.addChild(instText);
+    
+        createMoneyUI();
+        this.interaction = 0;
+        interactionSwitch();
+        
+        gameLoop();
+    }
+    
+    function gameLoop(){
+      requestAnimationFrame(gameLoop);
+      charm.update();
+    }
+     
+    function createUIElements(interactionType){
+        
+        if(UI != null){
+            scene.removeChild(UI);
+        }
+        
+        UI = new PIXI.Container();
+        UI.y = app.screen.height/2.6;
+        scene.addChild(UI);
+        
+        let elements = [];
+
+        switch(interactionType){   
+            case UIinteractionTypes.eat: 
+                elements.push(createBottomUIElement("banana",0,true, UI));
+                elements.push(createBottomUIElement("strawberry",1,true, UI));
+                elements.push(createBottomUIElement("green-apple",-1,true, UI));
+                break;
+            case UIinteractionTypes.clean:  
+                elements.push(createBottomUIElement("clean",0,true, UI, null));
+                break;
+            case UIinteractionTypes.play:
+                play();
+                break;    
+        }
+        return elements;
+    }
+    function createBottomUIElement(spriteName, position, draggable, UIContainer, interactionType){
+        let obj = new PIXI.Sprite(sheet.textures[spriteName + ".png"]);
+        if(interactionType != null)
+            obj.interaction = interactionType;
+        obj.anchor.set(0.5);
+        obj.scale.set(0.34/2);
+        
+        obj.position.x += obj.width*1.65 * position;
+        
+        obj.interactive = true;
+        obj
+        //events for drag start
+        .on('mousedown', onDragStart)
+        .on('touchstart', onDragStart)
+        
+        if(draggable){
+            obj
+            .on('mousemove', onDragMove)
+            .on('touchmove', onDragMove)
+            .on('mouseup', onDragEnd)
+            .on('mouseupoutside', onDragEnd)
+            .on('touchend', onDragEnd)
+            .on('touchendoutside', onDragEnd);
+        }
+        
+        UIContainer.addChild(obj);
+        return obj;
+    }
+    function createMoneyUI(){
+        createSprite("coin.png",0.45,-width/3,-height/2.4);
+        money.text = createText(money.amount.toString(),{
+            fill: "white",
+            fontFamily: "Verdana, Geneva, sans-serif",
+            fontSize: 50,
+            fontVariant: "small-caps",
+            strokeThickness: 4
+        },-width/5.5,-height/2.4);
+        
+        createSprite("bunny.png",0.4,width/3,-height/2.4);
+        createSprite("coin.png",0.15,width/3.4,-height/3);
+        createText("9",{
+            fill: "white",
+            fontFamily: "Verdana, Geneva, sans-serif",
+            fontSize: 28,
+            fontVariant: "small-caps",
+            strokeThickness : 1
+        },width/2.78,-height/2.99);
+    }
+    function updateMoney(amount){
+        if(money.amount<money.maxAmount){
+            money.amount = money.amount + amount;
+            money.text.text = money.amount.toString();
+            
+            if(money.amount>=money.maxAmount){
+                tamagotchi.textures = sheet.animations["Jump" + tamagotchiType];
+                tamagotchi.animationSpeed = 0.09;
+                tamagotchi.play();
+                setTimeout(endingScreen, 1500);
+            }
+            
+            if(money.amount==3*(interaction+1) && money.amount != 9){
+                interaction++;
+                setTimeout(interactionSwitch,1200);
+            }
+            
+        }
+    }   
+    function onDragStart(event){
+    // store a reference to the data
+    // the reason for this is because of multitouch
+    // we want to track the movement of this particular touch
+    this.data = event.data;
+    this.scale.set(this.scale.x*1.2);
+    this.oldPosition = Object.assign({}, this.position);
+    this.dragging = true;
+}
+    function onDragEnd(){
+        this.scale.set(this.scale.x/1.2);
+        this.dragging = false;
+        if(collisionWithAnimal(this)&&interaction ==0){
+            this.parent.removeChild(this);
+            updateMoney(1);
+        }else{
+            this.position.set(this.oldPosition._x, this.oldPosition._y);
+        }
+        
+        // set the interaction data to null
+        this.data = null;
+    }
+    function onDragMove(){
+        if (this.dragging)
+        {
+            var newPosition = this.data.getLocalPosition(this.parent);
+            this.position.x = newPosition.x;
+            this.position.y = newPosition.y;
+        }
+        
+        if(collisionWithAnimal(this)&& interaction ==2){
+            framesTillClean--;
+            if(framesTillClean<=0){
+                updateMoney(1);
+                switch(money.amount){
+                    case 7: tamagotchi.texture = sheet.textures["Dirty" + tamagotchiType + "_02.png"];
+                            this.tutorialSprite.tween.pause();
+                            this.tutorialSprite.parent.removeChild(this.tutorialSprite);
+                            break;
+                    case 8: tamagotchi.texture = sheet.textures["Dirty" + tamagotchiType + "_03.png"];
+                            break;
+                    case 9: tamagotchi.texture = sheet.textures["Idle" + tamagotchiType + "_01.png"];
+                            this.interactive = false;
+                            this.scale.set(this.scale.x/1.2);
+                            this.dragging = false;
+                            this.position.set(this.oldPosition._x, this.oldPosition._y);
+                            break;    
+                }
+                
+                framesTillClean = 300;
+            }
+        }
+}
+    
+    function interactionSwitch(){
+        switch(this.interaction){
+            case UIinteractionTypes.eat:    background.texture = sheet.textures["EatBackground.png"];
+                                            elements = createUIElements(UIinteractionTypes.eat, scene);
+                                            eatTutorial(elements);
+                                            break;
+            case UIinteractionTypes.clean:  background.texture = sheet.textures["cleanBackground.jpg"];
+                                            tamagotchi.stop();
+                                            tamagotchi.texture = sheet.textures["Dirty" + tamagotchiType + "_01.png"];
+                                            elements = createUIElements(UIinteractionTypes.clean, scene);
+                                            cleanTutorial(elements);
+                                            break;
+            case UIinteractionTypes.play:   background.texture = sheet.textures["PlayBackground.png"];
+                                            elements = createUIElements(UIinteractionTypes.play, scene);
+                                            break;   
+        }
+        
+    }
+    function breathe(item, size, loop){
+        let tween = charm.breathe(
+            item,
+            size/2,
+            size/2,
+            45,
+            loop,
+            1
+        );
+        return tween;
+    }
+    //clean 
+    function cleanTutorial(elements){
+        
+        let obj = createSprite("clean.png",0.34, 0, elements[0].parent.position.y);
+        obj.anchor.set(0.5);
+        obj.alpha = 0.6;
+        elements[0].tutorialSprite = obj;
+        let tween = charm.slide(
+                      obj,              //A sprite
+                      tamagotchi.position.x,         //The x position where the movement should end
+                      tamagotchi.position.y,         //The y position where the movement should end
+                      100,       //How long the movement should last, in frames
+                      "smoothstep",             //The easing style of the movement
+                      false,                  //A Boolean. Should the sprite yoyo?
+                      100   //Delay time, in ms, before the sprite yoyos.
+                    );
+
+        tween.completed = function(){
+            walkCircle(obj,tamagotchi.position);
+        };
+    }
+    function walkCircle(obj, pos){
+        let path = [   
+          [pos.x, pos.y+50],                    
+          [pos.x+50, pos.y],                    
+          [pos.x, pos.y-50],
+          [pos.x-50, pos.y],
+          [pos.x, pos.y+50]
+        ];
+        
+        obj.tween = charm.walkPath(
+          obj,            //The sprite
+          path,                //The Bezier curve array
+          180,                  //Duration, in milliseconds
+          "linear",         //Easing type
+          true
+        );
+    }
+    //eat
+    function collisionWithAnimal(otherObj){
+      var first = tamagotchi.getBounds();
+      var second = otherObj.getBounds();
+      return    first.x + first.width > second.x && 
+                first.x < second.x + second.width && 
+                first.y + first.height > second.y && 
+                first.y < second.y + second.height;
+    }
+    function eatTutorial(elements){
+        let obj = new PIXI.Sprite(elements[0].texture);
+        obj.scale.set(0.4/2);
+        obj.anchor.set(0.5);
+        obj.position.set(0,elements[0].parent.position.y);
+        obj.alpha = 0.6;
+        scene.addChild(obj);
+
+        let tween = charm.slide(
+                      obj,              //A sprite
+                      tamagotchi.position.x,         //The x position where the movement should end
+                      tamagotchi.position.y,         //The y position where the movement should end
+                      100,       //How long the movement should last, in frames
+                      "smoothstep",             //The easing style of the movement
+                      false,                  //A Boolean. Should the sprite yoyo?
+                      100   //Delay time, in ms, before the sprite yoyos.
+                    );
+
+            tween.completed = function(){
+                scene.removeChild(obj);  
+        };
+
+        if(money.amount!=0)
+            setTimeout(eatTutorial, 2000, elements);      
+    }
+    //play
+    function play(){
+        let x = -width/2;
+        let y = 0;
+        hats = [];
+        for(let i = 0; i<3;i++){
+            let sprite = createSprite("hat.png",0.4,x,y,UI);
+            hats.push(sprite);
+            if(x<0)
+                sprite.x += sprite.width/1.5;
+            else if(x>0)
+                sprite.x -= sprite.width/1.5;
+            
+            x+=width/2;
+            
+            if(i%2 == 0)
+                sprite.on('mousedown', loose).on('touchstart', loose);
+            else
+                sprite.on('mousedown', win).on('touchstart', win);
+        }
+        let choco = createSprite("chocolate.png",0.5,0,0, scene);
+        
+        charm.breathe(
+          choco,          //The sprite
+          1/2,          //The final scale x value
+          1/2,          //The final scale y value
+          30,
+          false
+        ).onComplete = function(){
+            charm.breathe(
+              choco,          //The sprite
+              0.5/2,          //The final scale x value
+              0.5/2,          //The final scale y value
+              30,
+              false
+            ).onComplete = function(){
+                charm.slide(
+                  choco,              //A sprite
+                  0,         //The x position where the movement should end
+                  UI.y,         //The y position where the movement should end
+                  70,       //How long the movement should last, in frames
+                  "acceleration",             //The easing style of the movement
+                  false,                  //A Boolean. Should the sprite yoyo?
+                  100   //Delay time, in ms, before the sprite yoyos.
+                ).onComplete = function(){
+                  scene.removeChild(choco);
+                  mix(hats);
+                };
+                
+            };
+        };
+}
+    function mix(hats){
+        
+        let y = hats[0].position.y;
+        let x1 = hats[0].position.x;
+        let x2 = hats[1].position.x;
+        let x3 = hats[2].position.x;
+        
+        let walkPoints1 = [
+          [x1, y],   //Start position
+          [x3, y],                    
+          [x2, y],                    
+          [x2, y],
+          [x3, y]  
+        ];
+        let walkPoints2 = [
+          [x2, y],   //Start position
+          [x1, y],                    
+          [x1, y],                    
+          [x3, y],
+          [x1, y]                   
+        ];
+        let walkPoints3 = [
+          [x3, y],   //Start position
+          [x2, y],                    
+          [x3, y],                    
+          [x1, y],
+          [x2, y]                    
+        ];
+        
+        charm.walkPath(
+          hats[0],            //The sprite
+          walkPoints1,                //The Bezier curve array
+          180,                  //Duration, in milliseconds
+          "linear",         //Easing type
+          false
+        );
+        
+        charm.walkPath(
+          hats[1],            //The sprite
+          walkPoints2,                //The Bezier curve array
+          180,                  //Duration, in milliseconds
+          "linear",         //Easing type
+          false
+        );
+        
+        charm.walkPath(
+          hats[2],            //The sprite
+          walkPoints3,                //The Bezier curve array
+          180,                  //Duration, in milliseconds
+          "linear",         //Easing type
+          false
+        );
+        
+        setTimeout(function(){
+            hats.forEach(function(item){
+                item.interactive = true;
+                item.charm = charm.breathe(
+                                item,
+                                0.45/2,
+                                0.45/2,
+                                30,
+                                true,
+                                1
+                            );
+            });
+        }, 2800);
+    }
+    function loose(){
+        this.charm.pause();
+        this.texture = sheet.textures["wrong.png"];
+    }
+    function win(){
+        hats.forEach(function(item){
+            item.charm.pause();
+        });
+        this.texture = sheet.textures["correct.png"];
+
+        let choco = createSprite("chocolate.png",0.5,-scene.width/6,scene.height/4, scene);
+        
+        charm.slide(
+          choco,              //A sprite
+          tamagotchi.position.x,         //The x position where the movement should end
+          tamagotchi.position.y,         //The y position where the movement should end
+          70,       //How long the movement should last, in frames
+          "smoothstep",             //The easing style of the movement
+          false,                  //A Boolean. Should the sprite yoyo?
+          100   //Delay time, in ms, before the sprite yoyos.
+        ).onComplete = function(){
+            choco.parent.removeChild(choco);
+        };
+        
+        updateMoney(3);
+    }
+    
+    function randomTrueFalse(){
+        return (Math.floor(Math.random()*10) < 5);
+    }
+    function createSprite(name,scale,x,y, parent){
+        let obj = new PIXI.Sprite(sheet.textures[name]);
+        obj.anchor.set(0.5);
+        obj.scale.set(scale/2);
+        obj.position.set(x,y);
+        if(parent != undefined)
+            parent.addChild(obj);
+        else
+            scene.addChild(obj);
+        return obj;
+    }
+    function createText(content,textStyle,x,y, parent){
+        let text = new PIXI.Text(content,textStyle);
+        text.anchor.set(0.5);
+        text.position.set(x, y);
+        if(parent != undefined)
+            parent.addChild(text);
+        else
+            scene.addChild(text);
+        return text;
+    }
+
+    function endingScreen(){
+    
+        let fader = new PIXI.Sprite(PIXI.Texture.WHITE);
+        fader.tint = 0x000000;
+        fader.anchor.set(0.5);
+        fader.width = app.screen.width;
+        fader.height = app.screen.height;
+        fader.alpha = 0.8;
+        scene.addChild(fader);
+        
+        let rays = createSprite("rays.png", 4,0,height/20,scene);
+        rays.alpha = 0.5;
+        app.ticker.add((delta) => {
+            rays.rotation -= 0.01 * delta;
+        });
+        
+        let bunny = createSprite("bunny.png",1,0,0);
+        
+        breathe(bunny, 1.5, true);
+    }
+    
+</script>
+    
+</html>

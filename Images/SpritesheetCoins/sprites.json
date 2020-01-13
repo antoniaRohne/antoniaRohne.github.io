@@ -1,0 +1,312 @@
+{
+"frames": {
+	"DirtyCat_01.png": {
+		"frame": {"x":1921, "y":434, "w":336, "h":438},
+		"spriteSourceSize": {"x":79,"y":27,"w":542,"h":474},
+		"sourceSize": {"w":542,"h":474}
+	},
+	"DirtyCat_02.png": {
+		"frame": {"x":1921, "y":0, "w":336, "h":433},
+		"spriteSourceSize": {"x":79,"y":27,"w":542,"h":474},
+		"sourceSize": {"w":542,"h":474}
+	},
+	"DirtyCat_03.png": {
+		"frame": {"x":2232, "y":2064, "w":310, "h":433},
+		"spriteSourceSize": {"x":105,"y":27,"w":542,"h":474},
+		"sourceSize": {"w":542,"h":474}
+	},
+	"DirtyDog_01.png": {
+		"frame": {"x":2258, "y":0, "w":299, "h":457},
+		"spriteSourceSize": {"x":97,"y":12,"w":547,"h":481},
+		"sourceSize": {"w":547,"h":481}
+	},
+	"DirtyDog_02.png": {
+		"frame": {"x":2258, "y":458, "w":299, "h":453},
+		"spriteSourceSize": {"x":97,"y":12,"w":547,"h":481},
+		"sourceSize": {"w":547,"h":481}
+	},
+	"DirtyDog_03.png": {
+		"frame": {"x":2836, "y":1807, "w":292, "h":453},
+		"spriteSourceSize": {"x":104,"y":12,"w":547,"h":481},
+		"sourceSize": {"w":547,"h":481}
+	},
+	"EatBackground.png": {
+		"frame": {"x":0, "y":1938, "w":1280, "h":800},
+		"spriteSourceSize": {"x":0,"y":0,"w":1280,"h":800},
+		"sourceSize": {"w":1280,"h":800}
+	},
+	"IdleCat_01.png": {
+		"frame": {"x":3143, "y":2683, "w":287, "h":433},
+		"spriteSourceSize": {"x":105,"y":27,"w":542,"h":474},
+		"sourceSize": {"w":542,"h":474}
+	},
+	"IdleCat_02.png": {
+		"frame": {"x":3431, "y":2627, "w":287, "h":430},
+		"spriteSourceSize": {"x":105,"y":30,"w":542,"h":474},
+		"sourceSize": {"w":542,"h":474}
+	},
+	"IdleCat_03.png": {
+		"frame": {"x":3129, "y":1770, "w":287, "h":428},
+		"spriteSourceSize": {"x":105,"y":32,"w":542,"h":474},
+		"sourceSize": {"w":542,"h":474}
+	},
+	"IdleCat_04.png": {
+		"frame": {"x":3142, "y":417, "w":287, "h":425},
+		"spriteSourceSize": {"x":105,"y":35,"w":542,"h":474},
+		"sourceSize": {"w":542,"h":474}
+	},
+	"IdleCat_05.png": {
+		"frame": {"x":3417, "y":1699, "w":287, "h":425},
+		"spriteSourceSize": {"x":105,"y":35,"w":542,"h":474},
+		"sourceSize": {"w":542,"h":474}
+	},
+	"IdleCat_06.png": {
+		"frame": {"x":3430, "y":425, "w":287, "h":425},
+		"spriteSourceSize": {"x":106,"y":35,"w":542,"h":474},
+		"sourceSize": {"w":542,"h":474}
+	},
+	"IdleCat_07.png": {
+		"frame": {"x":3430, "y":0, "w":287, "h":424},
+		"spriteSourceSize": {"x":106,"y":36,"w":542,"h":474},
+		"sourceSize": {"w":542,"h":474}
+	},
+	"IdleCat_08.png": {
+		"frame": {"x":3153, "y":2199, "w":287, "h":427},
+		"spriteSourceSize": {"x":106,"y":33,"w":542,"h":474},
+		"sourceSize": {"w":542,"h":474}
+	},
+	"IdleCat_09.png": {
+		"frame": {"x":3143, "y":3117, "w":287, "h":429},
+		"spriteSourceSize": {"x":105,"y":31,"w":542,"h":474},
+		"sourceSize": {"w":542,"h":474}
+	},
+	"IdleCat_10.png": {
+		"frame": {"x":3148, "y":1267, "w":287, "h":431},
+		"spriteSourceSize": {"x":105,"y":29,"w":542,"h":474},
+		"sourceSize": {"w":542,"h":474}
+	},
+	"IdleDog_01.png": {
+		"frame": {"x":2558, "y":2946, "w":292, "h":453},
+		"spriteSourceSize": {"x":104,"y":12,"w":547,"h":481},
+		"sourceSize": {"w":547,"h":481}
+	},
+	"IdleDog_02.png": {
+		"frame": {"x":2271, "y":1581, "w":292, "h":450},
+		"spriteSourceSize": {"x":104,"y":15,"w":547,"h":481},
+		"sourceSize": {"w":547,"h":481}
+	},
+	"IdleDog_03.png": {
+		"frame": {"x":2558, "y":3400, "w":292, "h":448},
+		"spriteSourceSize": {"x":104,"y":17,"w":547,"h":481},
+		"sourceSize": {"w":547,"h":481}
+	},
+	"IdleDog_04.png": {
+		"frame": {"x":2558, "y":0, "w":292, "h":445},
+		"spriteSourceSize": {"x":105,"y":20,"w":547,"h":481},
+		"sourceSize": {"w":547,"h":481}
+	},
+	"IdleDog_05.png": {
+		"frame": {"x":2274, "y":912, "w":292, "h":445},
+		"spriteSourceSize": {"x":105,"y":20,"w":547,"h":481},
+		"sourceSize": {"w":547,"h":481}
+	},
+	"IdleDog_06.png": {
+		"frame": {"x":2543, "y":2032, "w":292, "h":445},
+		"spriteSourceSize": {"x":105,"y":20,"w":547,"h":481},
+		"sourceSize": {"w":547,"h":481}
+	},
+	"IdleDog_07.png": {
+		"frame": {"x":2264, "y":3071, "w":293, "h":445},
+		"spriteSourceSize": {"x":105,"y":20,"w":547,"h":481},
+		"sourceSize": {"w":547,"h":481}
+	},
+	"IdleDog_08.png": {
+		"frame": {"x":2276, "y":2498, "w":292, "h":447},
+		"spriteSourceSize": {"x":105,"y":18,"w":547,"h":481},
+		"sourceSize": {"w":547,"h":481}
+	},
+	"IdleDog_09.png": {
+		"frame": {"x":2567, "y":898, "w":292, "h":449},
+		"spriteSourceSize": {"x":105,"y":16,"w":547,"h":481},
+		"sourceSize": {"w":547,"h":481}
+	},
+	"IdleDog_10.png": {
+		"frame": {"x":2558, "y":446, "w":292, "h":451},
+		"spriteSourceSize": {"x":104,"y":14,"w":547,"h":481},
+		"sourceSize": {"w":547,"h":481}
+	},
+	"JumpCat_01.png": {
+		"frame": {"x":2851, "y":2929, "w":291, "h":436},
+		"spriteSourceSize": {"x":134,"y":26,"w":542,"h":474},
+		"sourceSize": {"w":542,"h":474}
+	},
+	"JumpCat_02.png": {
+		"frame": {"x":3431, "y":3058, "w":286, "h":430},
+		"spriteSourceSize": {"x":103,"y":21,"w":542,"h":474},
+		"sourceSize": {"w":542,"h":474}
+	},
+	"JumpCat_03.png": {
+		"frame": {"x":3143, "y":0, "w":284, "h":396},
+		"spriteSourceSize": {"x":67,"y":25,"w":542,"h":474},
+		"sourceSize": {"w":542,"h":474}
+	},
+	"JumpCat_04.png": {
+		"frame": {"x":3151, "y":851, "w":284, "h":402},
+		"spriteSourceSize": {"x":68,"y":26,"w":542,"h":474},
+		"sourceSize": {"w":542,"h":474}
+	},
+	"JumpCat_05.png": {
+		"frame": {"x":3441, "y":2125, "w":283, "h":407},
+		"spriteSourceSize": {"x":70,"y":28,"w":542,"h":474},
+		"sourceSize": {"w":542,"h":474}
+	},
+	"JumpCat_06.png": {
+		"frame": {"x":3431, "y":3489, "w":284, "h":402},
+		"spriteSourceSize": {"x":68,"y":26,"w":542,"h":474},
+		"sourceSize": {"w":542,"h":474}
+	},
+	"JumpCat_07.png": {
+		"frame": {"x":3436, "y":851, "w":284, "h":396},
+		"spriteSourceSize": {"x":67,"y":25,"w":542,"h":474},
+		"sourceSize": {"w":542,"h":474}
+	},
+	"JumpCat_08.png": {
+		"frame": {"x":3436, "y":1248, "w":284, "h":402},
+		"spriteSourceSize": {"x":68,"y":26,"w":542,"h":474},
+		"sourceSize": {"w":542,"h":474}
+	},
+	"JumpDog_01.png": {
+		"frame": {"x":2569, "y":2478, "w":292, "h":450},
+		"spriteSourceSize": {"x":138,"y":17,"w":547,"h":481},
+		"sourceSize": {"w":547,"h":481}
+	},
+	"JumpDog_02.png": {
+		"frame": {"x":2564, "y":1358, "w":292, "h":448},
+		"spriteSourceSize": {"x":102,"y":9,"w":547,"h":481},
+		"sourceSize": {"w":547,"h":481}
+	},
+	"JumpDog_03.png": {
+		"frame": {"x":2851, "y":0, "w":291, "h":416},
+		"spriteSourceSize": {"x":66,"y":11,"w":547,"h":481},
+		"sourceSize": {"w":547,"h":481}
+	},
+	"JumpDog_04.png": {
+		"frame": {"x":2860, "y":845, "w":290, "h":421},
+		"spriteSourceSize": {"x":68,"y":12,"w":547,"h":481},
+		"sourceSize": {"w":547,"h":481}
+	},
+	"JumpDog_05.png": {
+		"frame": {"x":2851, "y":417, "w":290, "h":427},
+		"spriteSourceSize": {"x":69,"y":13,"w":547,"h":481},
+		"sourceSize": {"w":547,"h":481}
+	},
+	"JumpDog_06.png": {
+		"frame": {"x":2862, "y":2261, "w":290, "h":421},
+		"spriteSourceSize": {"x":68,"y":12,"w":547,"h":481},
+		"sourceSize": {"w":547,"h":481}
+	},
+	"JumpDog_07.png": {
+		"frame": {"x":2851, "y":3366, "w":291, "h":416},
+		"spriteSourceSize": {"x":66,"y":11,"w":547,"h":481},
+		"sourceSize": {"w":547,"h":481}
+	},
+	"JumpDog_08.png": {
+		"frame": {"x":2857, "y":1348, "w":290, "h":421},
+		"spriteSourceSize": {"x":68,"y":12,"w":547,"h":481},
+		"sourceSize": {"w":547,"h":481}
+	},
+	"PlayBackground.png": {
+		"frame": {"x":0, "y":1137, "w":1280, "h":800},
+		"spriteSourceSize": {"x":0,"y":0,"w":1280,"h":800},
+		"sourceSize": {"w":1280,"h":800}
+	},
+	"banana.png": {
+		"frame": {"x":1281, "y":1650, "w":512, "h":512},
+		"spriteSourceSize": {"x":0,"y":0,"w":512,"h":512},
+		"sourceSize": {"w":512,"h":512}
+	},
+	"bunny.png": {
+		"frame": {"x":1794, "y":1137, "w":479, "h":443},
+		"spriteSourceSize": {"x":13,"y":35,"w":512,"h":512},
+		"sourceSize": {"w":512,"h":512}
+	},
+	"chocolate.png": {
+		"frame": {"x":1794, "y":2064, "w":437, "h":512},
+		"spriteSourceSize": {"x":38,"y":0,"w":512,"h":512},
+		"sourceSize": {"w":512,"h":512}
+	},
+	"clean.png": {
+		"frame": {"x":737, "y":3252, "w":512, "h":512},
+		"spriteSourceSize": {"x":0,"y":0,"w":512,"h":512},
+		"sourceSize": {"w":512,"h":512}
+	},
+	"cleanBackground.jpg": {
+		"frame": {"x":0, "y":0, "w":1920, "h":1136},
+		"spriteSourceSize": {"x":0,"y":0,"w":1920,"h":1136},
+		"sourceSize": {"w":1920,"h":1136}
+	},
+	"cleanBackground2.jpg": {
+		"frame": {"x":0, "y":2739, "w":736, "h":1096},
+		"spriteSourceSize": {"x":0,"y":0,"w":736,"h":1096},
+		"sourceSize": {"w":736,"h":1096}
+	},
+	"coin.png": {
+		"frame": {"x":1250, "y":3561, "w":310, "h":334},
+		"spriteSourceSize": {"x":0,"y":0,"w":310,"h":334},
+		"sourceSize": {"w":310,"h":334}
+	},
+	"correct.png": {
+		"frame": {"x":1763, "y":2676, "w":512, "h":394},
+		"spriteSourceSize": {"x":0,"y":59,"w":512,"h":512},
+		"sourceSize": {"w":512,"h":512}
+	},
+	"eat.png": {
+		"frame": {"x":1794, "y":1581, "w":476, "h":482},
+		"spriteSourceSize": {"x":19,"y":14,"w":512,"h":512},
+		"sourceSize": {"w":512,"h":512}
+	},
+	"green-apple.png": {
+		"frame": {"x":1281, "y":1137, "w":512, "h":512},
+		"spriteSourceSize": {"x":0,"y":0,"w":512,"h":512},
+		"sourceSize": {"w":512,"h":512}
+	},
+	"hat.png": {
+		"frame": {"x":1250, "y":2739, "w":512, "h":480},
+		"spriteSourceSize": {"x":0,"y":16,"w":512,"h":512},
+		"sourceSize": {"w":512,"h":512}
+	},
+	"play.png": {
+		"frame": {"x":1250, "y":3220, "w":512, "h":340},
+		"spriteSourceSize": {"x":0,"y":86,"w":512,"h":512},
+		"sourceSize": {"w":512,"h":512}
+	},
+	"rays.png": {
+		"frame": {"x":1763, "y":3071, "w":500, "h":500},
+		"spriteSourceSize": {"x":0,"y":0,"w":500,"h":500},
+		"sourceSize": {"w":500,"h":500}
+	},
+	"strawberry.png": {
+		"frame": {"x":1281, "y":2163, "w":512, "h":512},
+		"spriteSourceSize": {"x":0,"y":0,"w":512,"h":512},
+		"sourceSize": {"w":512,"h":512}
+	},
+	"wrong.png": {
+		"frame": {"x":737, "y":2739, "w":512, "h":512},
+		"spriteSourceSize": {"x":0,"y":0,"w":512,"h":512},
+		"sourceSize": {"w":512,"h":512}
+	}
+
+},"animations": {
+	"IdleCat": ["IdleCat_01.png","IdleCat_02.png","IdleCat_03.png","IdleCat_04.png","IdleCat_05.png","IdleCat_06.png","IdleCat_07.png","IdleCat_08.png","IdleCat_09.png","IdleCat_10.png"],
+	"IdleDog": ["IdleDog_01.png","IdleDog_02.png","IdleDog_03.png","IdleDog_04.png","IdleDog_05.png","IdleDog_06.png","IdleDog_07.png","IdleDog_08.png","IdleDog_09.png","IdleDog_10.png"],
+    "JumpCat": ["JumpCat_01.png","JumpCat_02.png","JumpCat_03.png","JumpCat_04.png","JumpCat_05.png","JumpCat_06.png","JumpCat_07.png","JumpCat_08.png"],
+    "JumpDog": ["JumpDog_01.png","JumpDog_02.png","JumpDog_03.png","JumpDog_04.png","JumpDog_05.png","JumpDog_06.png","JumpDog_07.png","JumpDog_08.png"],
+    "SleepingCat": ["SleepingCat_1.png","SleepingCat_2.png"],
+    "SleepingDog": ["SleepingDog_1.png","SleepingDog_2.png"]
+},
+"meta": {
+	"image": "sprites.png",
+	"size": {"w": 3725, "h": 3896},
+	"scale": "1"
+}
+}

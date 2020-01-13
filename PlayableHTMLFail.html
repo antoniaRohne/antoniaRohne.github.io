@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Playable Ad Bachelorarbeit</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.3/pixi.min.js"></script>
+<script src="charm.js"></script>
+</head>
+<body>
+</body>
+
+
+<script>
+    const charm = new Charm(PIXI);
+    const app = new PIXI.Application({antialias: true});
+    document.body.appendChild(app.view);
+    app.renderer.view.style.position = "absolute";
+    app.renderer.view.style.display = "block";
+    app.renderer.autoDensity = true;
+    app.renderer.resize(window.innerWidth, window.innerHeight);
+    const scene = new PIXI.Container();
+    app.stage.addChild(scene); 
+    scene.x = app.screen.width / 2;
+    scene.y = app.screen.height / 2;
+    scene.pivot.x = scene.width / 2;
+    scene.pivot.y = scene.height / 2;
+    
+    let sheet;
+    let instruction= {};
+    let tamagotchi;
+    let UI;
+    let height;
+    let width;
+    let background;
+    let favouriteFood;
+    let tamagotchiType;
+    let direction;
+    let style;
+    
+    PIXI.Loader.shared.add("Images/SpritesheetFail/sprites.json").load(setup);
+    
+    function setup() {
+        sheet = PIXI.Loader.shared.resources["Images/SpritesheetFail/sprites.json"].spritesheet;
+        startup();
+    }
+    
+    function startup(){
+        
+        width = app.screen.width;
+        height = app.screen.height;
+        
+        background = new PIXI.Sprite(sheet.textures["EatBackground.png"]);
+        background.anchor.set(0.5);
+        background.scale.set(1.1/2);
+        background.height = app.screen.height;
+        background.width = -app.screen.width*2;
+        scene.addChild(background);
+ 
+        randomTrueFalse() ? tamagotchiType = "Cat" : tamagotchiType = "Dog";
+        
+        if(tamagotchiType == "Cat")
+            favouriteFood = "strawberry"
+        else
+            favouriteFood = "green-apple"
+        
+        tamagotchi = new PIXI.AnimatedSprite(sheet.animations["Idle" + tamagotchiType]);
+        tamagotchi.anchor.set(0.5);
+        tamagotchi.scale.set(1/2);
+        tamagotchi.animationSpeed = 0.12;
+        tamagotchi.play();
+        scene.addChild(tamagotchi); 
+        
+        instruction.graphics = new PIXI.Graphics();
+
+        instruction.graphics.lineStyle(2, 0x000000, 1);
+        instruction.graphics.beginFill(0xF37335, 0.6);
+        instruction.graphics.drawRoundedRect(-200,height/4.93, 400, 60, 10);
+        instruction.graphics.endFill();
+    
+        scene.addChild(instruction.graphics);
+        
+        style = new PIXI.TextStyle({
+            align: "center",
+            fill: "white",
+            fillGradientType: 1,
+            fontFamily: "Verdana, Geneva, sans-serif",
+            fontSize: 19,
+            fontVariant: "small-caps",
+            miterLimit: 14,
+            strokeThickness: 0,
+            wordWrap: true,
+            wordWrapWidth: 400
+        });
+        
+        let instText = new PIXI.Text('Find his favourite food before he starves!',style);
+        instText.anchor.set(0.5);
+        instText.position.set(0, height/4.1);
+        instruction.text = instText;
+        scene.addChild(instText);
+    
+        createUIElements();        
+        gameLoop();
+    }
+    
+    function gameLoop(){
+      requestAnimationFrame(gameLoop);
+      charm.update();
+    }
+    
+    function createUIElements(interactionType){
+        
+        if(UI != null){
+            scene.removeChild(UI);
+        }
+        
+        UI = new PIXI.Container();
+        UI.y = app.screen.height/2.6;
+        scene.addChild(UI);
+        
+        let elements = [];
+
+        elements.push(createBottomUIElement("banana",0,true, UI));
+        elements.push(createBottomUIElement("strawberry",1,true, UI));
+        elements.push(createBottomUIElement("green-apple",-1,true, UI));
+        animateUI(elements);
+        eatTutorial(elements);
+        
+        return elements;
+    }
+    
+    function createBottomUIElement(spriteName, position, draggable, UIContainer, interactionType){
+        let obj = new PIXI.Sprite(sheet.textures[spriteName + ".png"]);
+        obj.name = spriteName;
+        obj.anchor.set(0.5);
+        obj.scale.set(0.34/2);
+        
+        obj.position.x += obj.width*1.65 * position;
+        
+        obj.interactive = true;
+        obj
+        //events for drag start
+        .on('mousedown', onDragStart)
+        .on('touchstart', onDragStart)
+        
+        if(draggable){
+            obj
+            .on('mousemove', onDragMove)
+            .on('touchmove', onDragMove)
+            .on('mouseup', onDragEnd)
+            .on('mouseupoutside', onDragEnd)
+            .on('touchend', onDragEnd)
+            .on('touchendoutside', onDragEnd);
+        }
+        
+        UIContainer.addChild(obj);
+        return obj;
+    }
+     
+    function onDragStart(event){
+    // store a reference to the data
+    // the reason for this is because of multitouch
+    // we want to track the movement of this particular touch
+    this.data = event.data;
+    this.scale.set(this.scale.x*1.2);
+    this.oldPosition = Object.assign({}, this.position);
+    this.dragging = true;
+}
+    function onDragEnd(){
+        this.scale.set(this.scale.x/1.2);
+        this.dragging = false;
+        if(collisionWithAnimal(this)){
+            this.parent.removeChild(this);
+            checkIfFavouriteFood(this.name);
+        }else{
+            this.position.set(this.oldPosition._x, this.oldPosition._y);
+        }
+        
+        // set the interaction data to null
+        this.data = null;
+    }
+    function onDragMove(){
+        if (this.dragging)
+        {
+            var newPosition = this.data.getLocalPosition(this.parent);
+            this.position.x = newPosition.x;
+            this.position.y = newPosition.y;
+        }
+    
+}
+    function animateUI(elements){
+        breathe(elements[0], 0.4, true);
+        setTimeout(breathe, 600, elements[1], 0.4, true);
+        setTimeout(breathe, 1000, elements[2], 0.4, true);
+    }
+    function breathe(item, size, loop){
+        let tween = charm.breathe(
+            item,
+            size/2,
+            size/2,
+            45,
+            loop,
+            1
+        );
+        return tween;
+    }
+    //eat
+    function collisionWithAnimal(otherObj){
+      var first = tamagotchi.getBounds();
+      var second = otherObj.getBounds();
+      return    first.x + first.width > second.x && 
+                first.x < second.x + second.width && 
+                first.y + first.height > second.y && 
+                first.y < second.y + second.height;
+    }
+    function eatTutorial(elements){
+        
+        let obj = new PIXI.Sprite(elements[0].texture);
+        obj.scale.set(0.4/2);
+        obj.anchor.set(0.5);
+        obj.position.set(0,elements[0].parent.position.y);
+        obj.alpha = 0.6;
+        scene.addChild(obj);
+
+        let tween = charm.slide(
+                      obj,              //A sprite
+                      tamagotchi.position.x,         //The x position where the movement should end
+                      tamagotchi.position.y,         //The y position where the movement should end
+                      100,       //How long the movement should last, in frames
+                      "smoothstep",             //The easing style of the movement
+                      false,                  //A Boolean. Should the sprite yoyo?
+                      100   //Delay time, in ms, before the sprite yoyos.
+                    );
+
+            tween.completed = function(){
+                scene.removeChild(obj);  
+        };
+    }
+    
+    function checkIfFavouriteFood(food){
+        let win = true;
+        if(favouriteFood.localeCompare(food) == 0){
+            tamagotchi.textures = sheet.animations["Jump" + tamagotchiType];
+        }else{
+            tamagotchi.textures = sheet.animations["Fail" + tamagotchiType];
+            win = false;
+        }
+        tamagotchi.animationSpeed = 0.09;
+        tamagotchi.play();
+        setTimeout(endingScreen,1000, win);
+    }
+   
+    
+    function randomTrueFalse(){
+        return (Math.floor(Math.random()*10) < 5);
+    }
+    function createSprite(name,scale,x,y, parent){
+        let obj = new PIXI.Sprite(sheet.textures[name]);
+        obj.anchor.set(0.5);
+        obj.scale.set(scale/2);
+        obj.position.set(x,y);
+        if(parent != undefined)
+            parent.addChild(obj);
+        else
+            scene.addChild(obj);
+        return obj;
+    }
+    function endingScreen(win){
+        
+        
+        let fader = new PIXI.Sprite(PIXI.Texture.WHITE);
+        fader.tint = 0x000000;
+        fader.anchor.set(0.5);
+        fader.width = app.screen.width;
+        fader.height = app.screen.height;
+        fader.alpha = 0.8;
+        scene.addChild(fader);
+        
+        let rays = createSprite("rays.png", 4,0,height/20,scene);
+        rays.alpha = 0.5;
+        app.ticker.add((delta) => {
+            rays.rotation -= 0.01 * delta;
+        });
+        
+        let heart;
+        if(win){
+            heart = new PIXI.Sprite(sheet.textures["Jump" + tamagotchiType + "_08.png"]);
+        }else{
+            heart = new PIXI.Sprite(sheet.textures["Fail" + tamagotchiType + "_01.png"]);
+        }
+        
+        heart.anchor.set(0.5);
+        heart.scale.set(1.5/2);
+        heart.position.set(width/30,-height/8);
+        scene.addChild(heart);
+        
+        let panelGraphics = new PIXI.Graphics();
+        let buttonGraphics = new PIXI.Graphics();
+        
+        let downloadButton = new PIXI.Container();
+        downloadButton.position.set(0,height/5);
+        downloadButton.pivot.set(0.5);
+        
+                buttonGraphics.lineStyle(2, 0x000000, 1);
+                buttonGraphics.beginFill(0xFD0202,1);
+                buttonGraphics.drawRoundedRect(-100, -35, 200, 70);
+                buttonGraphics.endFill();
+
+                let text2 = new PIXI.Text('DOWNLOAD NOW!',{
+                    fill: "white",
+                    fillGradientType: 3,
+                    fontFamily: "Verdana, Geneva, sans-serif",
+                    fontSize: 19,
+                    fontVariant: "small-caps",
+                    miterLimit: 14,
+                    strokeThickness: 2
+                });
+                text2.anchor.set(0.5);
+                text2.position.set(0,0);
+                if(!win) text2.text = "TRY AGAIN!"
+               
+        scene.addChild(downloadButton);
+        downloadButton.addChild(buttonGraphics);
+        downloadButton.addChild(text2);
+        
+        breathe(downloadButton, 2.5, true);
+    }
+    
+</script>
+    
+</html>
