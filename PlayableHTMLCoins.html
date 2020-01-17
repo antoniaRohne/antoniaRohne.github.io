@@ -4,13 +4,17 @@
 <title>Playable Ad Bachelorarbeit</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.3/pixi.min.js"></script>
 <script src="charm.js"></script>
+<script src="GameAnalytics.min.js"></script>
 </head>
 <body>
 </body>
 
 
 <script>
-
+    
+    gameanalytics.GameAnalytics.configureBuild("html 1.0");
+    gameanalytics.GameAnalytics.initialize("ea05ddb38ff737c30bfd3798566047ce", "7f449dc3bc92a3a67623cbcbf1b62e7ce4c499e1");
+    
     const charm = new Charm(PIXI);
     const app = new PIXI.Application({antialias: true});
     document.body.appendChild(app.view);
@@ -535,6 +539,8 @@
     }
 
     function endingScreen(){
+        
+        gameanalytics.GameAnalytics.startSession();
     
         let fader = new PIXI.Sprite(PIXI.Texture.WHITE);
         fader.tint = 0x000000;
