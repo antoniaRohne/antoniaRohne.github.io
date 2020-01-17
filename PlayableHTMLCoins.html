@@ -567,7 +567,7 @@
     }
     function fakeLinkToStore(){
         
-        gameanalytics.GameAnalytics.addProgressionEvent(gameanalytics.EGAProgressionStatus.Complete, "linkToStore");
+        gameanalytics.GameAnalytics.addDesignEvent("linkToStore", true);
         
         scene.interactive = false;
         
