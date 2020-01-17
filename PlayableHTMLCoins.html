@@ -44,6 +44,7 @@
     let tamagotchiType;
     let direction;
     let style;
+    let currentDragging = false;
     
     const UIinteractionTypes = {   
       eat: 0,
@@ -215,14 +216,19 @@
     // store a reference to the data
     // the reason for this is because of multitouch
     // we want to track the movement of this particular touch
-    this.data = event.data;
-    this.scale.set(this.scale.x*1.2);
-    this.oldPosition = Object.assign({}, this.position);
-    this.dragging = true;
+    if(currentDragging == false){
+        this.data = event.data;
+        this.scale.set(this.scale.x*1.2);
+        this.oldPosition = Object.assign({}, this.position);
+        this.dragging = true;
+        currentDragging = true;
+    }
+    
 }
     function onDragEnd(){
         this.scale.set(this.scale.x/1.2);
         this.dragging = false;
+        currentDragging = false;
         if(collisionWithAnimal(this)&&interaction ==0){
             this.parent.removeChild(this);
             updateMoney(1);
