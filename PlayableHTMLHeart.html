@@ -40,6 +40,7 @@
     let direction;
     let style;
     let framesTillClean = 80;
+    let ratio = 2;
     
     const UIinteractionTypes = {
       start: 0,    
@@ -64,7 +65,7 @@
         
         background = new PIXI.Sprite(sheet.textures["Start.png"]);
         background.anchor.set(0.5);
-        background.scale.set(1.1/2);
+        background.scale.set(1.1/ratio);
         background.height = app.screen.height;
         background.width = -app.screen.width*2;
         scene.addChild(background);
@@ -73,7 +74,7 @@
         
         tamagotchi = new PIXI.AnimatedSprite(sheet.animations["Idle" + tamagotchiType]);
         tamagotchi.anchor.set(0.5);
-        tamagotchi.scale.set(1/2);
+        tamagotchi.scale.set(1/ratio);
         tamagotchi.animationSpeed = 0.12;
         tamagotchi.play();
         scene.addChild(tamagotchi); 
@@ -125,16 +126,16 @@
         
         let heart1 = new PIXI.Sprite(sheet.textures["heartempty.png"]);
         heart1.anchor.set(0.5);
-        heart1.scale.set(0.2/2);
-        heart1.oldScale = 0.2/2;
-        heart1.position.set(-width/2.6, -height/2.2);
+        heart1.scale.set(0.2/ratio);
+        heart1.oldScale = 0.2/ratio;
+        heart1.position.set(-width/2.5, -height/2.2);
         scene.addChild(heart1);
         heart1.charm = breathe(heart1, 0.25, true);
         
         let heart2 = new PIXI.Sprite(sheet.textures["heartfull.png"]);
         heart2.anchor.set(0.5);
-        heart2.scale.set(0.2/2);
-        heart2.position.set(width/2.6, -height/2.2);
+        heart2.scale.set(0.2/ratio);
+        heart2.position.set(width/2.5, -height/2.2);
         scene.addChild(heart2);
         
         healthBar.heart1 = heart1;
@@ -184,7 +185,7 @@
         if(interactionType != null)
             obj.interaction = interactionType;
         obj.anchor.set(0.5);
-        obj.scale.set(0.34/2);
+        obj.scale.set(0.34/ratio);
         
         obj.position.x += obj.width*1.65 * position;
         
@@ -211,7 +212,7 @@
         UIContainer.addChild(obj);
         return obj;
     }
-    function updateHealthbar(amount){
+    function updateHealthbar(amount){f
         if(health<maxHealth){
         
             for(let i=0; i<amount; i++){
@@ -295,7 +296,7 @@
         }
 }
     function onClick(){
-        this.scale.set(this.scale.x/1.2/2);
+        this.scale.set(this.scale.x/1.2/ratio);
         this.dragging = false;
         let elements;
         currentInteractionType = this.interaction;
@@ -324,8 +325,8 @@
     function breathe(item, size, loop){
         let tween = charm.breathe(
             item,
-            size/2,
-            size/2,
+            size/ratio,
+            size/ratio,
             45,
             loop,
             1
@@ -384,7 +385,7 @@
         
         if(health==0){
             let obj = new PIXI.Sprite(elements[0].texture);
-            obj.scale.set(0.4/2);
+            obj.scale.set(0.4/ratio);
             obj.anchor.set(0.5);
             obj.position.set(0,elements[0].parent.position.y);
             obj.alpha = 0.6;
@@ -431,15 +432,15 @@
         
         charm.breathe(
           choco,          //The sprite
-          1/2,          //The final scale x value
-          1/2,          //The final scale y value
+          1/ratio,          //The final scale x value
+          1/ratio,          //The final scale y value
           30,
           false
         ).onComplete = function(){
             charm.breathe(
               choco,          //The sprite
-              0.5/2,          //The final scale x value
-              0.5/2,          //The final scale y value
+              0.5/ratio,          //The final scale x value
+              0.5/ratio,          //The final scale y value
               30,
               false
             ).onComplete = function(){
@@ -517,8 +518,8 @@
                 item.interactive = true;
                 item.charm = charm.breathe(
                                 item,
-                                0.45/2,
-                                0.45/2,
+                                0.45/ratio,
+                                0.45/ratio,
                                 30,
                                 true,
                                 1
@@ -559,7 +560,7 @@
     function createSprite(name,scale,x,y, parent){
         let obj = new PIXI.Sprite(sheet.textures[name]);
         obj.anchor.set(0.5);
-        obj.scale.set(scale/2);
+        obj.scale.set(scale/ratio);
         obj.position.set(x,y);
         if(parent != undefined)
             parent.addChild(obj);
@@ -591,7 +592,7 @@
         
         let heart = new PIXI.Sprite(sheet.textures["Jump" + tamagotchiType + "_08.png"]);
         heart.anchor.set(0.5);
-        heart.scale.set(1/2);
+        heart.scale.set(1/ratio);
         heart.position.set(width/30,-height/5);
         scene.addChild(heart);
         

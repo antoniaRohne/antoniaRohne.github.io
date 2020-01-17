@@ -27,7 +27,7 @@
     
     body{
         font-family: sans-serif;
-        background-color: #FFFACD;
+        background-color: #B4B4B4;
     }
     
     p{
@@ -56,16 +56,17 @@
     }
     
     #flex{
-        background-color: #fff281;
+        background-color: #888888;
         display:flex;
         flex-flow: row wrap;
         justify-content: center;
         align-items: center;
         align-content: space-around;
+        border-style: ridge;
     }
     
     #block{
-        background-color: #fff281;
+        background-color: #888888;
         display:none;
     }
     
@@ -84,12 +85,24 @@
 </style>
 <script>
     
+    window.onload = function () {
+        /*let height = window.innerHeight;
+        let width = window.innerHeight;
+        
+        let playableHeight = height/1.5;
+        let playableWidth = playableHeight*2/3;
+        
+        document.getElementById("PlayableAd").height = playableHeight; 
+        document.getElementById("PlayableAd").width = playableWidth; 
+        document.getElementById("survey").height = window.innerHeight/1.5; */
+    }
+   
     let htmlArray = [
         "PlayableHTMLHeart.html",
         "PlayableHTMLFail.html",
         "PlayableHTMLCoins.html",
     ]
-    let current = 0;
+    let current = -1;
     
     function loadNextPlayable(){
         let iframe = document.getElementById("PlayableAd"); 
@@ -118,6 +131,7 @@
     function startPlayables(){
         document.getElementById("PlayableAd").classList.remove("hidden");
         document.getElementById("beginning").parentNode.removeChild(document.getElementById("beginning"));
+        loadNextPlayable();
         let name = (current+1).toString();
         document.getElementById("title").innerHTML = name +  ". Playable Ad";
         document.querySelectorAll(".button").forEach(element => element.classList.remove("hidden"));
@@ -173,7 +187,7 @@
     <button class="button hidden" onclick="loadNextPlayable()">Next Playable! >></button>
     <button class="button hidden replayButton" onclick="replayPlayable()">Replay Playable!</button>
     <br>
-    <iframe id="survey" class="hidden" src="https://docs.google.com/forms/d/e/1FAIpQLSdZCt8qdaXEU6SY_8v_ZKLkgt_Ae86fepkC5hoozoCn8cRjpQ/viewform?embedded=true" width="640" height="420" frameborder="0" marginheight="0" marginwidth="0">Wird geladen…</iframe>
+    <iframe id="survey" class="hidden" src="https://docs.google.com/forms/d/e/1FAIpQLSdZCt8qdaXEU6SY_8v_ZKLkgt_Ae86fepkC5hoozoCn8cRjpQ/viewform?embedded=true" width="640" frameborder="0" marginheight="0" marginwidth="0">Wird geladen…</iframe>
 </body>
     
 </html>
