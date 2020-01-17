@@ -33,7 +33,7 @@
     let background;
     let favouriteFood;
     let tamagotchiType;
-    let direction;
+    let tutorial;
     let style;
     
     PIXI.Loader.shared.add("Images/SpritesheetFail/sprites.json").load(setup);
@@ -213,26 +213,28 @@
     }
     function eatTutorial(elements){
         
-        let obj = new PIXI.Sprite(elements[0].texture);
-        obj.scale.set(0.4/2);
-        obj.anchor.set(0.5);
-        obj.position.set(0,elements[0].parent.position.y);
-        obj.alpha = 0.6;
-        scene.addChild(obj);
+        tutorial = new PIXI.Sprite(sheet.textures["tutorial.png"]);
+        tutorial.scale.set(0.4/2);
+        tutorial.anchor.set(0.5);
+        tutorial.position.set(0,elements[0].parent.position.y);
+        scene.addChild(tutorial);
+        
+        let path=[
+            [0,elements[0].parent.position.y],
+            [elements[1].position.x,elements[0].parent.position.y],
+            [elements[2].position.x,elements[0].parent.position.y],
+            [elements[0].position.x,elements[0].parent.position.y],
+            [tamagotchi.position.x,tamagotchi.position.y]
+        ];
 
-        let tween = charm.slide(
-                      obj,              //A sprite
-                      tamagotchi.position.x,         //The x position where the movement should end
-                      tamagotchi.position.y,         //The y position where the movement should end
-                      100,       //How long the movement should last, in frames
-                      "smoothstep",             //The easing style of the movement
-                      false,                  //A Boolean. Should the sprite yoyo?
-                      100   //Delay time, in ms, before the sprite yoyos.
-                    );
-
-            tween.completed = function(){
-                scene.removeChild(obj);  
-        };
+        let tween = charm.walkPath(
+          tutorial,            //The sprite
+          path,                //The Bezier curve array
+          180,                  //Duration, in milliseconds
+          "linear",         //Easing type
+          true
+        );
+        
     }
     
     function checkIfFavouriteFood(food){
@@ -245,6 +247,7 @@
         }
         tamagotchi.animationSpeed = 0.09;
         tamagotchi.play();
+        tutorial.parent.removeChild(tutorial);
         setTimeout(endingScreen,1000, win);
     }
    
@@ -265,7 +268,6 @@
     }
     function endingScreen(win){
         
-        
         let fader = new PIXI.Sprite(PIXI.Texture.WHITE);
         fader.tint = 0x000000;
         fader.anchor.set(0.5);
@@ -274,17 +276,27 @@
         fader.alpha = 0.8;
         scene.addChild(fader);
         
-        let rays = createSprite("rays.png", 4,0,height/20,scene);
+        scene.interactive = true;
+        scene
+        .on('mousedown', fakeLinkToStore)
+        .on('touchstart', fakeLinkToStore)
+        
+        let rayName = (!win) ? "rays.png" : "winRays.png";
+        
+        let rays = createSprite(rayName, 4,0,height/20,scene);
         rays.alpha = 0.5;
         app.ticker.add((delta) => {
             rays.rotation -= 0.01 * delta;
         });
         
         let heart;
+        let endingText;
         if(win){
             heart = new PIXI.Sprite(sheet.textures["Jump" + tamagotchiType + "_08.png"]);
+            endingText = "Yummy! He loves this fruit!";
         }else{
             heart = new PIXI.Sprite(sheet.textures["Fail" + tamagotchiType + "_01.png"]);
+            endingText = "Eww. He hates this fruit!";
         }
         
         heart.anchor.set(0.5);
@@ -295,8 +307,18 @@
         let panelGraphics = new PIXI.Graphics();
         let buttonGraphics = new PIXI.Graphics();
         
+        panelGraphics.lineStyle(2, 0x000000, 1);
+        panelGraphics.beginFill(0xF37335, 1);
+        panelGraphics.drawRoundedRect(-150, 100, 300, 70);
+        panelGraphics.endFill();
+        
+                let text = new PIXI.Text(endingText,style);
+                text.anchor.set(0.5);
+                text.position.set(0,130);
+                
+        
         let downloadButton = new PIXI.Container();
-        downloadButton.position.set(0,height/5);
+        downloadButton.position.set(0,height/3);
         downloadButton.pivot.set(0.5);
         
                 buttonGraphics.lineStyle(2, 0x000000, 1);
@@ -318,10 +340,58 @@
                 if(!win) text2.text = "TRY AGAIN!"
                
         scene.addChild(downloadButton);
+        scene.addChild(panelGraphics);
+        scene.addChild(text);
         downloadButton.addChild(buttonGraphics);
         downloadButton.addChild(text2);
         
         breathe(downloadButton, 2.5, true);
+    }
+    function fakeLinkToStore(){
+        
+        scene.interactive = false;
+        
+        let fader = new PIXI.Sprite(PIXI.Texture.WHITE);
+        fader.tint = 0x000000;
+        fader.anchor.set(0.5);
+        fader.width = app.screen.width;
+        fader.height = app.screen.height;
+        fader.alpha = 0.8;
+        scene.addChild(fader);
+        
+        let panelGraphics = new PIXI.Graphics();
+    
+        panelGraphics.lineStyle(1, 0x000000, 1);
+        panelGraphics.beginFill(0x333333, 1);
+        panelGraphics.drawRoundedRect(-175, -10, 350, 150);
+        panelGraphics.endFill();
+        scene.addChild(panelGraphics);
+        
+                let text = new PIXI.Text('With clicking this button you would be led to the store!',{
+                    fill: "white",
+                    align: "center",
+                    fontFamily: "Verdana, Geneva, sans-serif",
+                    fontSize: 19,
+                    fontVariant: "small-caps",
+                    wordWrap: true,
+                    wordWrapWidth: 300
+                });
+                text.anchor.set(0.5);
+                text.position.set(0,35);
+                scene.addChild(text);
+        
+                let text2 = new PIXI.Text('Replay the playable ad or go to the next one!',{
+                    fill: "white",
+                    align: "center",
+                    fontFamily: "Verdana, Geneva, sans-serif",
+                    fontSize: 19,
+                    fontVariant: "small-caps",
+                    wordWrap: true,
+                    wordWrapWidth: 300
+                });
+                text2.anchor.set(0.5);
+                text2.position.set(0,100);
+                scene.addChild(text2);
     }
     
 </script>

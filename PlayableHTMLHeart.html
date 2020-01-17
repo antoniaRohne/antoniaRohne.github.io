@@ -39,7 +39,7 @@
     let tamagotchiType;
     let direction;
     let style;
-    let framesTillClean = 200;
+    let framesTillClean = 80;
     
     const UIinteractionTypes = {
       start: 0,    
@@ -290,7 +290,7 @@
                             break;    
                 }
                 
-                framesTillClean = 200;
+                framesTillClean = 80;
             }
         }
 }
@@ -576,6 +576,11 @@
         fader.width = app.screen.width;
         fader.height = app.screen.height;
         fader.alpha = 0.8;
+        
+        scene.interactive = true;
+        scene
+        .on('mousedown', fakeLinkToStore)
+        .on('touchstart', fakeLinkToStore)
         scene.addChild(fader);
         
         let rays = createSprite("rays.png", 4,0,height/20,scene);
@@ -632,6 +637,52 @@
         downloadButton.addChild(text2);
         
         breathe(downloadButton, 2.5, true);
+    }
+    function fakeLinkToStore(){
+        
+        scene.interactive = false;
+        
+        let fader = new PIXI.Sprite(PIXI.Texture.WHITE);
+        fader.tint = 0x000000;
+        fader.anchor.set(0.5);
+        fader.width = app.screen.width;
+        fader.height = app.screen.height;
+        fader.alpha = 0.8;
+        scene.addChild(fader);
+        
+        let panelGraphics = new PIXI.Graphics();
+    
+        panelGraphics.lineStyle(1, 0x000000, 1);
+        panelGraphics.beginFill(0x333333, 1);
+        panelGraphics.drawRoundedRect(-175, -10, 350, 150);
+        panelGraphics.endFill();
+        scene.addChild(panelGraphics);
+        
+                let text = new PIXI.Text('With clicking this button you would be led to the store!',{
+                    fill: "white",
+                    align: "center",
+                    fontFamily: "Verdana, Geneva, sans-serif",
+                    fontSize: 19,
+                    fontVariant: "small-caps",
+                    wordWrap: true,
+                    wordWrapWidth: 300
+                });
+                text.anchor.set(0.5);
+                text.position.set(0,35);
+                scene.addChild(text);
+        
+                let text2 = new PIXI.Text('Replay the playable ad or go to the next one!',{
+                    fill: "white",
+                    align: "center",
+                    fontFamily: "Verdana, Geneva, sans-serif",
+                    fontSize: 19,
+                    fontVariant: "small-caps",
+                    wordWrap: true,
+                    wordWrapWidth: 300
+                });
+                text2.anchor.set(0.5);
+                text2.position.set(0,100);
+                scene.addChild(text2);
     }
     
 </script>
