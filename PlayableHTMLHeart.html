@@ -39,6 +39,7 @@
     let tamagotchiType;
     let direction;
     let style;
+    let tutorial;
     let framesTillClean = 80;
     
     const UIinteractionTypes = {
@@ -76,7 +77,7 @@
         tamagotchi.scale.set(1/2);
         tamagotchi.animationSpeed = 0.12;
         tamagotchi.play();
-        scene.addChild(tamagotchi); 
+        scene.addChild(tamagotchi);
         
         healthBar.graphics = new PIXI.Graphics();
         instruction.graphics = new PIXI.Graphics();
@@ -122,7 +123,7 @@
     }
     
     function createHealthbar(){
-        
+     
         let heart1 = new PIXI.Sprite(sheet.textures["heartempty.png"]);
         heart1.anchor.set(0.5);
         heart1.scale.set(0.2/2);
@@ -315,11 +316,57 @@
                                             break;   
         }
         
+        tutorial.parent.removeChild(tutorial);
     }
     function animateUI(elements){
         breathe(elements[0], 0.4, true);
         setTimeout(breathe, 600, elements[1], 0.4, true);
         setTimeout(breathe, 1000, elements[2], 0.4, true);
+        
+        tutorial = new PIXI.Sprite(sheet.textures["tutorial.png"]);
+        tutorial.scale.set(0.4/2);
+        tutorial.anchor.set(0.5);
+        tutorial.position.set(elements[0].position.x,elements[0].parent.position.y);
+        scene.addChild(tutorial);
+
+        chooseMovement(tutorial,[elements[0].position.x,elements[1].position.x,elements[2].position.x], elements[0].parent.position.y);
+        
+    }
+    
+    function chooseMovement(obj, Xpositions, y){
+
+        breatheInAndOut(obj, 0.3);
+        setTimeout(function(){
+            charm.slide(
+                obj,              //A sprite
+                Xpositions[1],         //The x position where the movement should end
+                y,         //The y position where the movement should end
+                50,       //How long the movement should last, in frames
+                "smoothstep",             //The easing style of the movement
+                false
+            ).onComplete = function(){ breatheInAndOut(obj, 0.3); }
+        },1300);
+        setTimeout(function(){
+            charm.slide(
+                obj,              //A sprite
+                Xpositions[2],         //The x position where the movement should end
+                y,         //The y position where the movement should end
+                50,       //How long the movement should last, in frames
+                "smoothstep",             //The easing style of the movement
+                false
+            ).onComplete = function(){ breatheInAndOut(obj, 0.3); }
+        },3200);
+        setTimeout(function(){
+            charm.slide(
+                obj,              //A sprite
+                Xpositions[0],         //The x position where the movement should end
+                y,         //The y position where the movement should end
+                50,       //How long the movement should last, in frames
+                "smoothstep",             //The easing style of the movement
+                false
+            ).onComplete = function(){ chooseMovement(obj,Xpositions,y); };
+        },4700); 
+
     }
     function breathe(item, size, loop){
         let tween = charm.breathe(
@@ -331,6 +378,24 @@
             1
         );
         return tween;
+    }
+    function breatheInAndOut(item, size){
+    
+        let tween = charm.breathe(
+            item,
+            size,
+            size,
+            20,
+            false
+        ).onComplete = function(){
+            charm.breathe(
+                item,
+                size-0.1,
+                size-0.1,
+                20,
+                false
+            );
+        };
     }
     //clean
     //clean 
@@ -533,6 +598,7 @@
     function win(){
         hats.forEach(function(item){
             item.charm.pause();
+            item.interactive = false;
         });
         this.texture = sheet.textures["correct.png"];
 

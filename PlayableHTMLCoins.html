@@ -486,6 +486,7 @@
     function win(){
         hats.forEach(function(item){
             item.charm.pause();
+            item.interactive = false;
         });
         this.texture = sheet.textures["correct.png"];
 
