@@ -146,7 +146,7 @@
     }
     
     function replayPlayable(){
-        gameanalytics.GameAnalytics.addDesignEvent("replay",1);
+        gameanalytics.GameAnalytics.addDesignEvent("replay",current);
         let iframe = document.getElementById("PlayableAd"); 
         iframe.src = htmlArray[current]; 
     }
