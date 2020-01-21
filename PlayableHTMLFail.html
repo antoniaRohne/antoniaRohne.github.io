@@ -46,7 +46,6 @@
     PIXI.Loader.shared.add("Images/SpritesheetFail/sprites.json").load(setup);
     
     function setup() {
-        gameanalytics.GameAnalytics.startSession();
         sheet = PIXI.Loader.shared.resources["Images/SpritesheetFail/sprites.json"].spritesheet;
         startup();
     }
@@ -362,7 +361,6 @@
     function fakeLinkToStore(){
         
         gameanalytics.GameAnalytics.addDesignEvent("linkToStore", 1);
-        gameanalytics.GameAnalytics.endSession();
         
         scene.interactive = false;
         

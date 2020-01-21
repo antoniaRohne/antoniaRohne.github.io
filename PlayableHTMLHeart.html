@@ -14,6 +14,7 @@
     
     gameanalytics.GameAnalytics.configureBuild("html 1.0");
     gameanalytics.GameAnalytics.initialize("ea05ddb38ff737c30bfd3798566047ce", "7f449dc3bc92a3a67623cbcbf1b62e7ce4c499e1");
+    gameanalytics.GameAnalytics.setEnabledInfoLog(true);
     
     const charm = new Charm(PIXI);
     const app = new PIXI.Application({antialias: true});
@@ -60,7 +61,6 @@
     PIXI.Loader.shared.add("Images/SpritesheetHeart/sprites.json").load(setup);
     
     function setup() {
-        gameanalytics.GameAnalytics.startSession();
         sheet = PIXI.Loader.shared.resources["Images/SpritesheetHeart/sprites.json"].spritesheet;
         startup();
     }
@@ -309,6 +309,7 @@
     function onClick(){
         this.scale.set(this.scale.x/1.2/2);
         this.dragging = false;
+        currentDragging = false;
         let elements;
         currentInteractionType = this.interaction;
         switch(this.interaction){
@@ -717,8 +718,7 @@
     function fakeLinkToStore(){
         
         gameanalytics.GameAnalytics.addDesignEvent("linkToStore", 1);
-        gameanalytics.GameAnalytics.endSession();
-        
+
         scene.interactive = false;
         
         let fader = new PIXI.Sprite(PIXI.Texture.WHITE);
