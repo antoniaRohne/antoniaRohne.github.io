@@ -62,11 +62,7 @@
         font-style: bold;
     }
     
-    ul{
-        
-    }
-    
-    #flex{
+    .flex{
         background-color: #FFF6E5;
         display:flex;
         flex-flow: row wrap;
@@ -77,8 +73,9 @@
     }
     
     #block{
-        background-color: #888888;
+        background-color: #FFF6E5;
         display:none;
+        padding: 3%;
     }
     
     img{
@@ -97,6 +94,15 @@
         h2{
             font-size: 32px;
         }
+        
+        #Sources{
+          display: none;  
+        }
+        
+        #block{
+            display: block;
+        }
+        
     }
     
 </style>
@@ -108,7 +114,6 @@
         gameanalytics.GameAnalytics.configureBuild("html 1.0");
         gameanalytics.GameAnalytics.initialize("ea05ddb38ff737c30bfd3798566047ce", "7f449dc3bc92a3a67623cbcbf1b62e7ce4c499e1");
         gameanalytics.GameAnalytics.setEnabledInfoLog(true);
-        gameanalytics.GameAnalytics.endSession();
     }
 
     let htmlArray = [
@@ -119,7 +124,6 @@
     let current = -1;
     
     function loadNextPlayable(){
-        gameanalytics.GameAnalytics.endSession();
         let iframe = document.getElementById("PlayableAd"); 
         if(current <2){
             current++;
@@ -140,7 +144,7 @@
     }
     
     function replayPlayable(){
-        gameanalytics.GameAnalytics.addDesignEvent("replay", (current+1));
+        gameanalytics.GameAnalytics.addDesignEvent("replay",1);
         let iframe = document.getElementById("PlayableAd"); 
         iframe.src = htmlArray[current]; 
     }
@@ -161,7 +165,7 @@
     <h1 id="title" align="center">Herzlich Willkommen zur Umfrage für meine Bachelorarbeit!</h1>
     
     <container class="beginning">
-        <container id="flex">
+        <container class="flex">
             <container>
                 <h2 align="center">"Spielbare Werbung - Die Zukunft der Werbung in Mobile Games"</h2>
                 <p align="center">Für meine Arbeit habe ich mich intensiv mit dem Werbeformat Playable Ads beschäftigt.
@@ -180,7 +184,32 @@
         
     <container class="beginning">
         <h1 align="center">Quellen / Sources</h1>
-        <container id="flex">
+        <container class="flex" id="Sources">
+            <container>
+                <h3 align="center">Icons</h3>    
+                <ul>
+                  <li>Author: "Freepik" - <a href="https://www.flaticon.com/search?word=Freepik">https://www.flaticon.com</a></li>
+                  <li>Author: "Dave Gandy" - <a href="https://www.flaticon.com/packs/search?word=Dave%20Gandy">https://www.flaticon.com</a></li>
+                </ul>  
+            </container> 
+             <container>
+                <h3 align="center">Sprites/Images</h3>    
+                <ul>
+                  <li>Author: "pzUH" - <a href="https://opengameart.org/content/cat-dog-free-sprites">https://opengameart.org/content/cat-dog-free-sprites</a></li>
+                  <li>Author: "Robert Brooks" - <a href="https://gamedeveloperstudio.itch.io/fruits-icon-pack">https://gamedeveloperstudio.itch.io/fruits-icon-pack</a></li>
+                  <li>Author: "knik1985" - <a href="https://opengameart.org/content/health">https://opengameart.org/content/health</a></li>
+                  <li><a href="https://www.seekpng.com/ipng/u2y3a9i1w7q8i1e6_mouse-cursor-click-clipart-png-cartoon-hand-pointing/ ">https://www.seekpng.com/ipng/u2y3a9i1w7q8i1e6_mouse-cursor-click-clipart-png-cartoon-hand-pointing/</a></li>
+                </ul> 
+            </container> 
+            <container>
+                <h3 align="center">Backgrounds</h3>    
+                <ul>
+                  <li><a href="https://adirosa.itch.io/cdc-backgrounds">https://adirosa.itch.io/cdc-backgrounds</a></li>
+                  <li><a href="https://www.pinterest.jp/pin/234327986847924611/">https://www.pinterest.jp/pin/234327986847924611/</a></li>
+                </ul> 
+            </container> 
+        </container>
+        <container id="block">
             <container>
                 <h3 align="center">Icons</h3>    
                 <ul>

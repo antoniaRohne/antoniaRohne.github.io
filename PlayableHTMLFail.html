@@ -279,9 +279,7 @@
         return obj;
     }
     function endingScreen(win){
-        
-        gameanalytics.GameAnalytics.endSession();
-        
+      
         let fader = new PIXI.Sprite(PIXI.Texture.WHITE);
         fader.tint = 0x000000;
         fader.anchor.set(0.5);
@@ -362,7 +360,9 @@
         breathe(downloadButton, 2.5, true);
     }
     function fakeLinkToStore(){
-        gameanalytics.GameAnalytics.addDesignEvent("linkToStore", true);
+        
+        gameanalytics.GameAnalytics.addDesignEvent("linkToStore", 1);
+        gameanalytics.GameAnalytics.endSession();
         
         scene.interactive = false;
         
