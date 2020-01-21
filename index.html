@@ -12,10 +12,9 @@
       text-align: center;
       text-decoration: none;
       display: block;
-      font-size: 16px;
+      font-size: 25px;
       margin-left:auto;
       margin-right:auto;
-      margin-top:2%;
       width: 20%;
     }
     
@@ -68,13 +67,13 @@
     }
     
     #flex{
-        background-color: #F0FFF0;
+        background-color: #FFF6E5;
         display:flex;
         flex-flow: row wrap;
         justify-content: center;
         align-items: center;
         align-content: space-around;
-        border-style: solid;
+        margin-bottom: 2%;
     }
     
     #block{
@@ -146,8 +145,7 @@
     
     function startPlayables(){
         document.getElementById("PlayableAd").classList.remove("hidden");
-        document.getElementById("beginning").parentNode.removeChild(document.getElementById("beginning"));
-        document.getElementById("block").parentNode.removeChild(document.getElementById("block"));
+        document.querySelectorAll(".beginning").forEach(element => element.parentNode.removeChild(element));
         loadNextPlayable();
         let name = (current+1).toString();
         document.getElementById("title").innerHTML = name +  ". Playable Ad";
@@ -160,7 +158,7 @@
     <img src="Images/Animals/dog/Jump%20(3).png" style="float:right">
     <h1 id="title" align="center">Herzlich Willkommen zur Umfrage für meine Bachelorarbeit!</h1>
     
-    <container id="beginning">
+    <container class="beginning">
         <container id="flex">
             <container>
                 <h2 align="center">"Spielbare Werbung - Die Zukunft der Werbung in Mobile Games"</h2>
@@ -178,32 +176,34 @@
     <br>    
     </container>
         
-    <h1 align="center">Quellen / Sources</h1>
-    <container id="flex">
-        <container>
-            <h3 align="center">Icons</h3>    
-            <ul>
-              <li>Author: "Freepik" - <a href="https://www.flaticon.com/search?word=Freepik">https://www.flaticon.com</a></li>
-              <li>Author: "Dave Gandy" - <a href="https://www.flaticon.com/packs/search?word=Dave%20Gandy">https://www.flaticon.com</a></li>
-            </ul>  
-        </container> 
-         <container>
-            <h3 align="center">Sprites/Images</h3>    
-            <ul>
-              <li>Author: "pzUH" - <a href="https://opengameart.org/content/cat-dog-free-sprites">https://opengameart.org/content/cat-dog-free-sprites</a></li>
-              <li>Author: "Robert Brooks" - <a href="https://gamedeveloperstudio.itch.io/fruits-icon-pack">https://gamedeveloperstudio.itch.io/fruits-icon-pack</a></li>
-              <li>Author: "knik1985" - <a href="https://opengameart.org/content/health">https://opengameart.org/content/health</a></li>
-              <li><a href="https://www.seekpng.com/ipng/u2y3a9i1w7q8i1e6_mouse-cursor-click-clipart-png-cartoon-hand-pointing/ ">https://www.seekpng.com/ipng/u2y3a9i1w7q8i1e6_mouse-cursor-click-clipart-png-cartoon-hand-pointing/</a></li>
-            </ul> 
-        </container> 
-        <container>
-            <h3 align="center">Backgrounds</h3>    
-            <ul>
-              <li><a href="https://adirosa.itch.io/cdc-backgrounds">https://adirosa.itch.io/cdc-backgrounds</a></li>
-              <li><a href="https://www.pinterest.jp/pin/234327986847924611/">https://www.pinterest.jp/pin/234327986847924611/</a></li>
-            </ul> 
-        </container> 
-    </container>
+    <container class="beginning">
+        <h1 align="center">Quellen / Sources</h1>
+        <container id="flex">
+            <container>
+                <h3 align="center">Icons</h3>    
+                <ul>
+                  <li>Author: "Freepik" - <a href="https://www.flaticon.com/search?word=Freepik">https://www.flaticon.com</a></li>
+                  <li>Author: "Dave Gandy" - <a href="https://www.flaticon.com/packs/search?word=Dave%20Gandy">https://www.flaticon.com</a></li>
+                </ul>  
+            </container> 
+             <container>
+                <h3 align="center">Sprites/Images</h3>    
+                <ul>
+                  <li>Author: "pzUH" - <a href="https://opengameart.org/content/cat-dog-free-sprites">https://opengameart.org/content/cat-dog-free-sprites</a></li>
+                  <li>Author: "Robert Brooks" - <a href="https://gamedeveloperstudio.itch.io/fruits-icon-pack">https://gamedeveloperstudio.itch.io/fruits-icon-pack</a></li>
+                  <li>Author: "knik1985" - <a href="https://opengameart.org/content/health">https://opengameart.org/content/health</a></li>
+                  <li><a href="https://www.seekpng.com/ipng/u2y3a9i1w7q8i1e6_mouse-cursor-click-clipart-png-cartoon-hand-pointing/ ">https://www.seekpng.com/ipng/u2y3a9i1w7q8i1e6_mouse-cursor-click-clipart-png-cartoon-hand-pointing/</a></li>
+                </ul> 
+            </container> 
+            <container>
+                <h3 align="center">Backgrounds</h3>    
+                <ul>
+                  <li><a href="https://adirosa.itch.io/cdc-backgrounds">https://adirosa.itch.io/cdc-backgrounds</a></li>
+                  <li><a href="https://www.pinterest.jp/pin/234327986847924611/">https://www.pinterest.jp/pin/234327986847924611/</a></li>
+                </ul> 
+            </container> 
+        </container>
+    </container>    
     
     <br>
     <iframe class="hidden" id="PlayableAd" src="PlayableHTMLHeart.html" height="720" width="480" scrolling="no"></iframe>
