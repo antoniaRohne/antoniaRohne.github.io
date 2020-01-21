@@ -316,6 +316,7 @@
                       100   //Delay time, in ms, before the sprite yoyos.
                     );
 
+        elements[0].tutorialSprite.tween = tween;
         tween.completed = function(){
             walkCircle(obj,tamagotchi.position);
         };

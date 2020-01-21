@@ -117,7 +117,6 @@
         document.getElementById("survey").width = window.innerWidth/2;
         gameanalytics.GameAnalytics.configureBuild("html 1.0");
         gameanalytics.GameAnalytics.initialize("ea05ddb38ff737c30bfd3798566047ce", "7f449dc3bc92a3a67623cbcbf1b62e7ce4c499e1");
-        gameanalytics.GameAnalytics.setEnabledInfoLog(true);
     }
 
     let htmlArray = [
@@ -133,7 +132,6 @@
             current++;
             if(current == 2){
                 document.querySelectorAll(".button")[0].innerHTML = "Zur Umfrage / To survey";
-                document.querySelectorAll(".button")[1].innerHTML = "Zur Umfrage / To survey";
             }   
             let name = (current+1).toString();
             document.getElementById("title").innerHTML = name +  ". Playable Ad";

@@ -14,7 +14,6 @@
     
     gameanalytics.GameAnalytics.configureBuild("html 1.0");
     gameanalytics.GameAnalytics.initialize("ea05ddb38ff737c30bfd3798566047ce", "7f449dc3bc92a3a67623cbcbf1b62e7ce4c499e1");
-    gameanalytics.GameAnalytics.setEnabledInfoLog(true);
     
     const charm = new Charm(PIXI);
     const app = new PIXI.Application({antialias: true});
@@ -426,7 +425,8 @@
                       false,                  //A Boolean. Should the sprite yoyo?
                       100   //Delay time, in ms, before the sprite yoyos.
                     );
-
+        elements[0].tutorialSprite.tween = tween;
+        
         tween.completed = function(){
             walkCircle(obj,tamagotchi.position);
         };
