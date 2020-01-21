@@ -274,6 +274,7 @@
         this.data = null;
     }
     function onDragMove(){
+    
         if (this.dragging)
         {
             var newPosition = this.data.getLocalPosition(this.parent);
@@ -281,7 +282,7 @@
             this.position.y = newPosition.y;
         }
         
-        if(collisionWithAnimal(this) && currentInteractionType == UIinteractionTypes.clean){
+        if(collisionWithAnimal(this) && currentInteractionType == UIinteractionTypes.clean && currentDragging){
             framesTillClean--;
             if(framesTillClean<=0){
                 updateHealthbar(3);
@@ -304,7 +305,7 @@
                 framesTillClean = 80;
             }
         }
-}
+    }
     function onClick(){
         this.scale.set(this.scale.x/1.2/2);
         this.dragging = false;
