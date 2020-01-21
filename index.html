@@ -29,12 +29,12 @@
     
     body{
         font-family: sans-serif;
-        background-color: #B4B4B4;
+        background-color: #FFFFFF;
         overflow:visible;
     }
     
     p{
-        width:40%; 
+        width:70%; 
         display:block;
         margin-left:auto;
         margin-right:auto;
@@ -55,17 +55,17 @@
     }
     
     ul{
-        margin-left:28%;
+        
     }
     
     #flex{
-        background-color: #888888;
+        background-color: #F0FFF0;
         display:flex;
         flex-flow: row wrap;
         justify-content: center;
         align-items: center;
         align-content: space-around;
-        border-style: ridge;
+        border-style: solid;
     }
     
     #block{
@@ -73,8 +73,12 @@
         display:none;
     }
     
+    img{
+        width:10%;
+    }
+    
     @media only screen and (max-width: 1650px ) {
-        #beginning{
+        /*#beginning{
             display:none;
         }
         #block{
@@ -82,7 +86,7 @@
         }
         img{
             display:none;
-        }
+        }*/
     }
     
 </style>
@@ -143,21 +147,26 @@
 </script>
 </head>
 <body> 
+    <img src="Images/Animals/cat/Jump%20(3).png" style="float:left">   
+    <img src="Images/Animals/dog/Jump%20(3).png" style="float:right">
     <h1 id="title" align="center">Herzlich Willkommen zur Umfrage für meine Bachelorarbeit!</h1>
+    
     <container id="beginning">
         <container id="flex">
-            <h2 align="center">"Spielbare Werbung - Die Zukunft der Werbung in Mobile Games"</h2>
-            <h2 align="center">"Playable Ads - The future of ads in mobile games"</h2>
-            <p align="center">Für meine Arbeit habe ich mich intensiv mit dem Werbeformat Playable Ads beschäftigt.
-            Um weitere Informationen über die Wirksamkeit und Attraktivität dieses Formates zu erhalten, habe ich selber 3 Playable Ads erstellt 
-            und werde euch diese nun vorstellen. Am Ende gibt es eine Umfrage. Ich würde mich freuen, wenn ihr an dieser teilnehmt.</p>
-            <p align="center">For my bachelor thesis I took a closer look at playable ads. To gain more information about efficiency and attractiveness of this format, I created 3 Playable Ads myself and would like to present them to you. At the end there is a little survey, I would really appreciate it, if you fill it out!</p>
+            <container>
+                <h2 align="center">"Spielbare Werbung - Die Zukunft der Werbung in Mobile Games"</h2>
+                <p align="center">Für meine Arbeit habe ich mich intensiv mit dem Werbeformat Playable Ads beschäftigt.
+                Um weitere Informationen über die Wirksamkeit und Attraktivität dieses Formates zu erhalten, habe ich selber 3 Playable Ads erstellt 
+                und werde euch diese nun vorstellen. Am Ende gibt es eine Umfrage. Ich würde mich freuen, wenn ihr an dieser teilnehmt.</p>
+            </container>
+            <container>
+                <h2 align="center">"Playable Ads - The future of ads in mobile games"</h2>
+                <p align="center">For my bachelor thesis I took a closer look at playable ads. To gain more information about efficiency and attractiveness of this format, I created 3 Playable Ads myself and would like to present them to you. At the end there is a little survey, I would really appreciate it, if you fill it out!</p>
+            </container>
         </container>
     
         <button align="center" class="button" onclick="startPlayables(this)">Start</button>
     <br>    
-    <img src="Images/Animals/cat/Jump%20(3).png" style="float:left">   
-    <img src="Images/Animals/dog/Jump%20(3).png"style="float:right">
     
     <h1 align="center">Quellen / Sources</h1>
     <p align="center"><i>Icons</i></p>    
@@ -187,7 +196,7 @@
         <button align="center" class="button" onclick="startPlayables(this)">Start</button>
         
         <h1 align="center">Quellen / Sources</h1>
-        <p ><i>Icons</i></p>    
+        <p><i>Icons</i></p>    
         <ul>
           <li>Author: "Freepik" - <a href="https://www.flaticon.com/search?word=Freepik">https://www.flaticon.com</a></li>
           <li>Author: "Dave Gandy" - <a href="https://www.flaticon.com/packs/search?word=Dave%20Gandy">https://www.flaticon.com</a></li>
