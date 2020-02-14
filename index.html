@@ -898,12 +898,16 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
         if(dapi.isViewable()){
             setup();
 	   }
+        
+         dapi.addEventListener("audioVolumeChange",function(){//nothing because no audio
+         });
 
     }
 
 
     function setup() {
         var screenSize = dapi.getScreenSize();    
+        var volume = dapi.getAudioVolume();
         sheet = new PIXI.Spritesheet(base64.texture.baseTexture, {
             "frames": {
 	"EatBackground.png": {
@@ -1266,7 +1270,8 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
         
         tamagotchi = new PIXI.AnimatedSprite(sheet.animations["Idle" + tamagotchiType]);
         tamagotchi.anchor.set(0.5);
-        tamagotchi.scale.set(1/2);
+        tamagotchi.scale.set(0.8/2);
+        tamagotchi.position.set(0,-50);
         tamagotchi.animationSpeed = 0.12;
         tamagotchi.play();
         scene.addChild(tamagotchi); 
@@ -1275,7 +1280,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 
         instruction.graphics.lineStyle(2, 0x000000, 1);
         instruction.graphics.beginFill(0xF37335, 0.6);
-        instruction.graphics.drawRoundedRect(-200,height/4.93, 400, 60, 10);
+        instruction.graphics.drawRoundedRect(-125,height/4.93, 250, 50, 10);
         instruction.graphics.endFill();
     
         scene.addChild(instruction.graphics);
@@ -1285,12 +1290,12 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
             fill: "white",
             fillGradientType: 1,
             fontFamily: "Verdana, Geneva, sans-serif",
-            fontSize: 19,
+            fontSize: 16,
             fontVariant: "small-caps",
             miterLimit: 14,
             strokeThickness: 0,
             wordWrap: true,
-            wordWrapWidth: 400
+            wordWrapWidth: 200
         });
         
         let instText = new PIXI.Text('Find his favourite food before he starves!',style);
@@ -1333,9 +1338,9 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
         let obj = new PIXI.Sprite(sheet.textures[spriteName + ".png"]);
         obj.name = spriteName;
         obj.anchor.set(0.5);
-        obj.scale.set(0.34/2);
+        obj.scale.set(0.34/2.5);
         
-        obj.position.x += obj.width*1.65 * position;
+        obj.position.x += obj.width*1.4 * position;
         
         obj.interactive = true;
         obj
@@ -1394,9 +1399,9 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
     
 }
     function animateUI(elements){
-        breathe(elements[0], 0.4, true);
-        setTimeout(breathe, 600, elements[1], 0.4, true);
-        setTimeout(breathe, 1000, elements[2], 0.4, true);
+        breathe(elements[0], 0.22, true);
+        setTimeout(breathe, 600, elements[1], 0.22, true);
+        setTimeout(breathe, 1000, elements[2], 0.22, true);
     }
     function breathe(item, size, loop){
         let tween = charm.breathe(
@@ -1421,7 +1426,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
     function eatTutorial(elements){
         
         tutorial = new PIXI.Sprite(sheet.textures["tutorial.png"]);
-        tutorial.scale.set(0.4/2);
+        tutorial.scale.set(0.15);
         tutorial.anchor.set(0.5);
         tutorial.position.set(0,elements[0].parent.position.y);
         scene.addChild(tutorial);
@@ -1506,7 +1511,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
         }
         
         heart.anchor.set(0.5);
-        heart.scale.set(1.5/2);
+        heart.scale.set(0.55);
         heart.position.set(width/30,-height/8);
         scene.addChild(heart);
         
@@ -1515,12 +1520,12 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
         
         panelGraphics.lineStyle(2, 0x000000, 1);
         panelGraphics.beginFill(0xF37335, 1);
-        panelGraphics.drawRoundedRect(-150, 100, 300, 70);
+        panelGraphics.drawRoundedRect(-100, 50, 200, 60);
         panelGraphics.endFill();
         
                 let text = new PIXI.Text(endingText,style);
                 text.anchor.set(0.5);
-                text.position.set(0,130);
+                text.position.set(0,80);
                 
         
         let downloadButton = new PIXI.Container();
@@ -1529,7 +1534,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
         
                 buttonGraphics.lineStyle(2, 0x000000, 1);
                 buttonGraphics.beginFill(0xFD0202,1);
-                buttonGraphics.drawRoundedRect(-100, -35, 200, 70);
+                buttonGraphics.drawRoundedRect(-90, -35, 180, 50);
                 buttonGraphics.endFill();
 
                 let text2 = new PIXI.Text('DOWNLOAD NOW!',{
@@ -1542,7 +1547,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
                     strokeThickness: 2
                 });
                 text2.anchor.set(0.5);
-                text2.position.set(0,0);
+                text2.position.set(0,-10);
                 if(!win) text2.text = "TRY AGAIN!"
                
         scene.addChild(downloadButton);
