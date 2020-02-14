@@ -895,17 +895,12 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
         //No need to listen to this event anymore
         dapi.removeEventListener("ready", onReadyCallback);
 
-        //If the ad is visible start the game
-        dapi.isViewable() ? setup();
-        //Use dapi functions
-        dapi.addEventListener("viewableChange", viewableChangeCallback);
-        dapi.addEventListener("adResized", orientationCallback);
+        if(dapi.isViewable()){
+            setup();
+	   }
+
     }
 
-
-    function viewableChangeCallback(e){
-        e.isViewable ? this.startGame() : pause(); //start the game or resume
-    }
 
     function setup() {
         var screenSize = dapi.getScreenSize();    
