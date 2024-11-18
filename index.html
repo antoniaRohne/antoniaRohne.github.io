@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Umfrage Playable Ad</title> 
-<script src="GameAnalytics.min.js"></script>
+<title>Gina Geschenk</title> 
 <style>
     .button {
       background-color: #4CAF50; 
@@ -110,61 +109,9 @@
     }
     
 </style>
-<script>
-    
-    window.onload = function () {
-        document.getElementById("survey").height = window.innerHeight/1.2;
-        document.getElementById("survey").width = window.innerWidth/2;
-        gameanalytics.GameAnalytics.configureBuild("html 1.0");
-        gameanalytics.GameAnalytics.initialize("ea05ddb38ff737c30bfd3798566047ce", "7f449dc3bc92a3a67623cbcbf1b62e7ce4c499e1");
-    }
-
-    let htmlArray = [
-        "PlayableHTMLHeart.html",
-        "PlayableHTMLFail.html",
-        "PlayableHTMLCoins.html",
-    ]
-    let current = -1;
-    
-    function loadNextPlayable(){
-        let iframe = document.getElementById("PlayableAd"); 
-        if(current <2){
-            current++;
-            if(current == 2){
-                document.querySelectorAll(".button")[0].innerHTML = "Zur Umfrage / To survey";
-            }   
-            let name = (current+1).toString();
-            document.getElementById("title").innerHTML = name +  ". Playable Ad";
-        }else{
-            iframe.parentNode.removeChild(iframe);
-            document.getElementById("survey").classList.remove("hidden"); 
-            document.querySelectorAll(".button").forEach(element => element.parentNode.removeChild(element));
-            document.getElementById("title").innerHTML = "Survey/ Umfrage";
-        }
-        iframe.src = htmlArray[current];    
-        
-    }
-    
-    function replayPlayable(){
-        gameanalytics.GameAnalytics.addDesignEvent("replay",current);
-        let iframe = document.getElementById("PlayableAd"); 
-        iframe.src = htmlArray[current]; 
-    }
-    
-    function startPlayables(){
-        document.getElementById("PlayableAd").classList.remove("hidden");
-        document.querySelectorAll(".beginning").forEach(element => element.parentNode.removeChild(element));
-        loadNextPlayable();
-        let name = (current+1).toString();
-        document.getElementById("title").innerHTML = name +  ". Playable Ad";
-        document.querySelectorAll(".button").forEach(element => element.classList.remove("hidden"));
-    }
-</script>
 </head>
 <body> 
-    <img src="Images/Animals/cat/Jump%20(3).png" style="float:left">   
-    <img src="Images/Animals/dog/Jump%20(3).png" style="float:right">
-    <h1 id="title" align="center">Herzlich Willkommen zur Umfrage für meine Bachelorarbeit!</h1>
+    <h1 id="title" align="center">Herzlich Willkommen zur deinem Geschenk!</h1>
     
     <container class="beginning">
         <container class="flex">
@@ -179,72 +126,6 @@
                 <p align="center">For my bachelor thesis I took a closer look at playable ads. To gain more information about efficiency and attractiveness of this format, I created 3 Playable Ads myself and would like to present them to you. At the end there is a little survey, I would really appreciate it, if you fill it out!</p>
             </container>
         </container>
-    
-        <button align="center" class="button" onclick="startPlayables(this)">Start</button>
-    <br>    
-    </container>
-        
-    <container class="beginning">
-        <h1 align="center">Quellen / Sources</h1>
-        <container class="flex" id="Sources">
-            <container>
-                <h3 align="center">Icons</h3>    
-                <ul>
-                  <li>Author: "Freepik" - <a href="https://www.flaticon.com/search?word=Freepik">https://www.flaticon.com</a></li>
-                  <li>Author: "Dave Gandy" - <a href="https://www.flaticon.com/packs/search?word=Dave%20Gandy">https://www.flaticon.com</a></li>
-                </ul>  
-            </container> 
-             <container>
-                <h3 align="center">Sprites/Images</h3>    
-                <ul>
-                  <li>Author: "pzUH" - <a href="https://opengameart.org/content/cat-dog-free-sprites">https://opengameart.org/content/cat-dog-free-sprites</a></li>
-                  <li>Author: "Robert Brooks" - <a href="https://gamedeveloperstudio.itch.io/fruits-icon-pack">https://gamedeveloperstudio.itch.io/fruits-icon-pack</a></li>
-                  <li>Author: "knik1985" - <a href="https://opengameart.org/content/health">https://opengameart.org/content/health</a></li>
-                  <li><a href="https://www.seekpng.com/ipng/u2y3a9i1w7q8i1e6_mouse-cursor-click-clipart-png-cartoon-hand-pointing/ ">https://www.seekpng.com/ipng/u2y3a9i1w7q8i1e6_mouse-cursor-click-clipart-png-cartoon-hand-pointing/</a></li>
-                </ul> 
-            </container> 
-            <container>
-                <h3 align="center">Backgrounds</h3>    
-                <ul>
-                  <li><a href="https://adirosa.itch.io/cdc-backgrounds">https://adirosa.itch.io/cdc-backgrounds</a></li>
-                  <li><a href="https://www.pinterest.jp/pin/234327986847924611/">https://www.pinterest.jp/pin/234327986847924611/</a></li>
-                </ul> 
-            </container> 
-        </container>
-        <container id="block">
-            <container>
-                <h3 align="center">Icons</h3>    
-                <ul>
-                  <li>Author: "Freepik" - <a href="https://www.flaticon.com/search?word=Freepik">https://www.flaticon.com</a></li>
-                  <li>Author: "Dave Gandy" - <a href="https://www.flaticon.com/packs/search?word=Dave%20Gandy">https://www.flaticon.com</a></li>
-                </ul>  
-            </container> 
-             <container>
-                <h3 align="center">Sprites/Images</h3>    
-                <ul>
-                  <li>Author: "pzUH" - <a href="https://opengameart.org/content/cat-dog-free-sprites">https://opengameart.org/content/cat-dog-free-sprites</a></li>
-                  <li>Author: "Robert Brooks" - <a href="https://gamedeveloperstudio.itch.io/fruits-icon-pack">https://gamedeveloperstudio.itch.io/fruits-icon-pack</a></li>
-                  <li>Author: "knik1985" - <a href="https://opengameart.org/content/health">https://opengameart.org/content/health</a></li>
-                  <li><a href="https://www.seekpng.com/ipng/u2y3a9i1w7q8i1e6_mouse-cursor-click-clipart-png-cartoon-hand-pointing/ ">https://www.seekpng.com/ipng/u2y3a9i1w7q8i1e6_mouse-cursor-click-clipart-png-cartoon-hand-pointing/</a></li>
-                </ul> 
-            </container> 
-            <container>
-                <h3 align="center">Backgrounds</h3>    
-                <ul>
-                  <li><a href="https://adirosa.itch.io/cdc-backgrounds">https://adirosa.itch.io/cdc-backgrounds</a></li>
-                  <li><a href="https://www.pinterest.jp/pin/234327986847924611/">https://www.pinterest.jp/pin/234327986847924611/</a></li>
-                </ul> 
-            </container> 
-        </container>
-    </container>    
-    
-    <br>
-    <iframe class="hidden" id="PlayableAd" src="PlayableHTMLHeart.html" height="720" width="480" scrolling="no"></iframe>
-    <br>
-    <button class="button hidden" onclick="loadNextPlayable()">Next Playable! >></button>
-    <button class="button hidden replayButton" onclick="replayPlayable()">Replay Playable!</button>
-    <br>
-    <iframe id="survey" class="hidden" src="https://docs.google.com/forms/d/e/1FAIpQLSdZCt8qdaXEU6SY_8v_ZKLkgt_Ae86fepkC5hoozoCn8cRjpQ/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Wird geladen…</iframe>
 </body>
     
 </html>
