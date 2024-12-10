@@ -85,7 +85,6 @@ function getSelected() {
 }
 
 // Submit button click handler
-// Submit button click handler
 submitBtn.addEventListener('click', () => {
     const answer = getSelected();
     if (answer) {
@@ -106,12 +105,12 @@ submitBtn.addEventListener('click', () => {
             if (score === quizData.length) {
                 resultMessage.innerHTML = `
                     <h2>Du kannst es fühlen, aber nicht behalten</h2>
-                    <button onclick="startQuiz()">Reload</button>
+                    <button onclick="startQuiz()">Neu laden</button>
                 `;
             } else {
                 resultMessage.innerHTML = `
-                    <h2>You answered ${score}/${quizData.length} questions correctly</h2>
-                    <button onclick="startQuiz()">Reload</button>
+                    <h2>Du hast ${score}/${quizData.length} Fragen richtig beantwortet</h2>
+                    <button onclick="startQuiz()">Neu laden</button>
                 `;
             }
         }
