@@ -1,8 +1,8 @@
 const quizData = [
     {
-        question: "Was ist Toni's Lieblingszahl",
-        a: "93",
-        b: "101",
+        question: "Was ist Toni's Lieblingszahl?",
+        a: "21",
+        b: "77",
         c: "3",
         d: "22",
         correct: "d",
@@ -31,53 +31,55 @@ const quizData = [
         d: "none of the above",
         correct: "b",
     },
-
-
 ];
 
-const quiz= document.getElementById('quiz')
-const answerEls = document.querySelectorAll('.answer')
-const questionEl = document.getElementById('question')
-const a_text = document.getElementById('a_text')
-const b_text = document.getElementById('b_text')
-const c_text = document.getElementById('c_text')
-const d_text = document.getElementById('d_text')
-const submitBtn = document.getElementById('submit')
+const quiz = document.getElementById('quiz');
+const answerEls = document.querySelectorAll('.answer');
+const questionEl = document.getElementById('question');
+const a_text = document.getElementById('a_text');
+const b_text = document.getElementById('b_text');
+const c_text = document.getElementById('c_text');
+const d_text = document.getElementById('d_text');
+const submitBtn = document.getElementById('submit');
 
+let currentQuiz = 0;
+let score = 0;
 
-let currentQuiz = 0
-let score = 0
+// Function to initialize and start the quiz
+function startQuiz() {
+    loadQuiz();
+    score = 0;
+    currentQuiz = 0;
+}
 
-loadQuiz()
-
+// Function to load quiz content
 function loadQuiz() {
-
-    deselectAnswers()
-
-    const currentQuizData = quizData[currentQuiz]
-
-    questionEl.innerText = currentQuizData.question
-    a_text.innerText = currentQuizData.a
-    b_text.innerText = currentQuizData.b
-    c_text.innerText = currentQuizData.c
-    d_text.innerText = currentQuizData.d
+    deselectAnswers();
+    const currentQuizData = quizData[currentQuiz];
+    questionEl.innerText = currentQuizData.question;
+    a_text.innerText = currentQuizData.a;
+    b_text.innerText = currentQuizData.b;
+    c_text.innerText = currentQuizData.c;
+    d_text.innerText = currentQuizData.d;
 }
 
+// Function to deselect answers
 function deselectAnswers() {
-    answerEls.forEach(answerEl => answerEl.checked = false)
+    answerEls.forEach(answerEl => answerEl.checked = false);
 }
 
+// Function to get selected answer
 function getSelected() {
-    let answer
+    let answer;
     answerEls.forEach(answerEl => {
-        if(answerEl.checked) {
-            answer = answerEl.id
+        if (answerEl.checked) {
+            answer = answerEl.id;
         }
-    })
-    return answer
+    });
+    return answer;
 }
 
-
+// Submit button click handler
 submitBtn.addEventListener('click', () => {
     const answer = getSelected();
     if (answer) {
@@ -86,7 +88,7 @@ submitBtn.addEventListener('click', () => {
             submitBtn.classList.remove('red');
             submitBtn.classList.add('green');
         } else {
-            submitBtn.classList.add('red'); 
+            submitBtn.classList.add('red');
             submitBtn.classList.remove('green');
         }
 
@@ -96,10 +98,19 @@ submitBtn.addEventListener('click', () => {
             loadQuiz();
             submitBtn.classList.remove('red', 'green');
         } else {
-            quiz.innerHTML = `
-                <h2>You answered ${score}/${quizData.length} questions correctly</h2>
-                <button onclick="location.reload()">Reload</button>
-            `;
+            if (score === quizData.length) {
+                quiz.innerHTML = `
+                    <h2>Du kannst es fühlen, aber nicht behalten</h2>
+                    <button onclick="startQuiz()">Reload</button>
+                `;
+            } else {
+                quiz.innerHTML = `
+                    <h2>You answered ${score}/${quizData.length} questions correctly</h2>
+                    <button onclick="startQuiz()">Reload</button>
+                `;
+            }
         }
     }
 });
+
+startQuiz();
