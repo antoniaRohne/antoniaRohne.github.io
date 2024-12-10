@@ -41,15 +41,18 @@ const b_text = document.getElementById('b_text');
 const c_text = document.getElementById('c_text');
 const d_text = document.getElementById('d_text');
 const submitBtn = document.getElementById('submit');
+const resultMessage = document.getElementById('resultMessage'); // Added element for result message
 
 let currentQuiz = 0;
 let score = 0;
 
 // Function to initialize and start the quiz
 function startQuiz() {
-    loadQuiz();
     score = 0;
     currentQuiz = 0;
+    resultMessage.style.display = "none"; // Hide result message at the start
+    quiz.style.display = "block"; // Show the quiz content
+    loadQuiz();
 }
 
 // Function to load quiz content
@@ -61,6 +64,7 @@ function loadQuiz() {
     b_text.innerText = currentQuizData.b;
     c_text.innerText = currentQuizData.c;
     d_text.innerText = currentQuizData.d;
+    submitBtn.classList.remove('red', 'green'); // Remove any color before submitting the next question
 }
 
 // Function to deselect answers
@@ -96,15 +100,17 @@ submitBtn.addEventListener('click', () => {
 
         if (currentQuiz < quizData.length) {
             loadQuiz();
-            submitBtn.classList.remove('red', 'green');
         } else {
+            // After quiz is over, display result
+            quiz.style.display = "none"; // Hide quiz content
+            resultMessage.style.display = "block"; // Show result message
             if (score === quizData.length) {
-                quiz.innerHTML = `
+                resultMessage.innerHTML = `
                     <h2>Du kannst es fühlen, aber nicht behalten</h2>
                     <button onclick="startQuiz()">Reload</button>
                 `;
             } else {
-                quiz.innerHTML = `
+                resultMessage.innerHTML = `
                     <h2>You answered ${score}/${quizData.length} questions correctly</h2>
                     <button onclick="startQuiz()">Reload</button>
                 `;
@@ -113,4 +119,5 @@ submitBtn.addEventListener('click', () => {
     }
 });
 
+// Initialize the quiz
 startQuiz();
