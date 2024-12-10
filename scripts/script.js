@@ -87,13 +87,16 @@ function getSelected() {
 submitBtn.addEventListener('click', () => {
     const answer = getSelected();
     if (answer) {
+        console.log(`Selected answer: ${answer}`);
         if (answer === quizData[currentQuiz].correct) {
             score++;
             submitBtn.classList.remove('red');  // Remove red class if answer is correct
             submitBtn.classList.add('green');   // Add green class for correct answer
+            console.log("Correct! Green class added.");
         } else {
             submitBtn.classList.add('red');     // Add red class for wrong answer
             submitBtn.classList.remove('green');  // Remove green class if answer is wrong
+            console.log("Wrong! Red class added.");
         }
 
         currentQuiz++;
@@ -101,20 +104,12 @@ submitBtn.addEventListener('click', () => {
         if (currentQuiz < quizData.length) {
             loadQuiz();
         } else {
-            // After quiz is over, display result
             quiz.style.display = "none"; // Hide quiz content
             resultMessage.style.display = "block"; // Show result message
-            if (score === quizData.length) {
-                resultMessage.innerHTML = `
-                    <h2>Du kannst es fühlen, aber nicht behalten</h2>
-                    <button onclick="startQuiz()">Reload</button>
-                `;
-            } else {
-                resultMessage.innerHTML = `
-                    <h2>You answered ${score}/${quizData.length} questions correctly</h2>
-                    <button onclick="startQuiz()">Reload</button>
-                `;
-            }
+            resultMessage.innerHTML = `
+                <h2>You answered ${score}/${quizData.length} questions correctly</h2>
+                <button onclick="startQuiz()">Reload</button>
+            `;
         }
     }
 });
