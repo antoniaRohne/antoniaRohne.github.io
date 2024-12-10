@@ -1,18 +1,18 @@
 const quizData = [
     {
-        question: "Which language runs in a web browser?",
-        a: "Java",
-        b: "C",
-        c: "Python",
-        d: "javascript",
+        question: "Was ist Toni's Lieblingszahl",
+        a: "93",
+        b: "101",
+        c: "3",
+        d: "22",
         correct: "d",
     },
     {
-        question: "What does CSS stand for?",
-        a: "Central Style Sheets",
-        b: "Cascading Style Sheets",
-        c: "Cascading Simple Sheets",
-        d: "Cars SUVs Sailboats",
+        question: "Test",
+        a: "a",
+        b: "b",
+        c: "c",
+        d: "d",
         correct: "b",
     },
     {

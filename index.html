@@ -126,34 +126,48 @@
             box-sizing: border-box;
         }
 
-        .quiz-container{
+        /* Center the quiz container */
+        .quiz-container {
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.1);
-            width: 600px;
-            overflow: hidden;
+            width: 80%; /* Adjust width for responsive design */
+            max-width: 600px; /* Set a max-width */
+            margin: 50px auto; /* Center quiz horizontally and give top margin */
+            padding: 20px;
+            text-align: center; /* Center text */
+            color:black;
         }
-        .quiz-header{
-            padding: 4rem;
-        }
-        h2{
+
+        /* Quiz header styling */
+        .quiz-header h2 {
+            font-size: 24px;
             padding: 1rem;
-            text-align: center;
             margin: 0;
         }
 
-        ul{
+        /* List styling */
+        ul {
             list-style-type: none;
             padding: 0;
         }
-        ul li{
+
+        ul li {
             font-size: 1.2rem;
             margin: 1rem 0;
+            text-align: left; /* Align the answers to the left */
+            display: flex;
+            align-items: center;
+            padding: 0px 0px 0px 60px;
         }
-        ul li label{
+
+        ul li label {
             cursor: pointer;
+            margin-left: 50px;
         }
-        button{
+
+        /* Button styling */
+        button {
             background-color: #03cae4;
             color: #fff;
             border: none;
@@ -163,13 +177,28 @@
             font-size: 1.1rem;
             font-family: inherit;
             padding: 1.3rem;
+            border-radius: 5px; /* Rounded corners */
+            margin-top: 20px; /* Space above the button */
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
-        button:hover{
+
+        /* Button hover effect */
+        button:hover {
             background-color: #04adc4;
+            transform: translateY(-2px);
         }
-        button:focus{
+
+        /* Button focus effect */
+        button:focus {
             outline: none;
             background-color: #44b927;
+            transform: translateY(0);
+        }
+
+        /* Button active state */
+        button:active {
+            background-color: #028f9c;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -187,8 +216,8 @@
         </container>
 
         <container>
-            <h3 align="center">🤫 Leider musst du dich noch etwas gedulden. 🤫</h2>
-                <p align="center"> Komm hierher zurück für mehr Informationen!</p>
+            <h3 align="center">🤫 Leider musst du dich noch etwas gedulden 🤫</h2>
+                <p align="center">Komm hierher zurück für mehr Informationen!</p>
         </container>
     </container>
 
