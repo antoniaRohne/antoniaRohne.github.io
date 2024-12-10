@@ -8,28 +8,28 @@ const quizData = [
         correct: "d",
     },
     {
-        question: "Test",
-        a: "a",
-        b: "b",
-        c: "c",
-        d: "d",
-        correct: "b",
+        question: "Was ist Vicky's Lieblingseissorte?",
+        a: "Vanille",
+        b: "Schoko",
+        c: "Erdbeer",
+        d: "Haselnuss",
+        correct: "c",
     },
     {
-        question: "What does HTML stand for?",
-        a: "Hypertext Markup Language",
-        b: "Hypertext Markdown Language",
-        c: "Hyperloop Machine Language",
-        d: "Helicopters Terminals Motorboats Lamborginis",
+        question: "Was war Toni's höchster League of Legends Rank?",
+        a: "Silber",
+        b: "Gold",
+        c: "Platin",
+        d: "Diamond",
+        correct: "d",
+    },
+    {
+        question: "Wielange arbeitet Vicky schon bei BASF?",
+        a: "13 Jahre",
+        b: "10 Jahre",
+        c: "15 Jahre",
+        d: "9 Jahre",
         correct: "a",
-    },
-    {
-        question: "What year was JavaScript launched?",
-        a: "1996",
-        b: "1995",
-        c: "1994",
-        d: "none of the above",
-        correct: "b",
     },
 ];
 
@@ -89,11 +89,11 @@ submitBtn.addEventListener('click', () => {
     if (answer) {
         if (answer === quizData[currentQuiz].correct) {
             score++;
-            submitBtn.classList.remove('red');
-            submitBtn.classList.add('green');
+            submitBtn.classList.remove('red');  // Remove red class if answer is correct
+            submitBtn.classList.add('green');   // Add green class for correct answer
         } else {
-            submitBtn.classList.add('red');
-            submitBtn.classList.remove('green');
+            submitBtn.classList.add('red');     // Add red class for wrong answer
+            submitBtn.classList.remove('green');  // Remove green class if answer is wrong
         }
 
         currentQuiz++;
