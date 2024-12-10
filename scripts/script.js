@@ -85,6 +85,7 @@ function getSelected() {
 }
 
 // Submit button click handler
+// Submit button click handler
 submitBtn.addEventListener('click', () => {
     const answer = getSelected();
     if (answer) {
@@ -100,10 +101,19 @@ submitBtn.addEventListener('click', () => {
         } else {
             quiz.style.display = "none"; // Hide quiz content
             resultMessage.style.display = "block"; // Show result message
-            resultMessage.innerHTML = `
-                <h2>You answered ${score}/${quizData.length} questions correctly</h2>
-                <button onclick="startQuiz()">Reload</button>
-            `;
+
+            // Check if the user answered all questions correctly
+            if (score === quizData.length) {
+                resultMessage.innerHTML = `
+                    <h2>Du kannst es fühlen, aber nicht behalten</h2>
+                    <button onclick="startQuiz()">Reload</button>
+                `;
+            } else {
+                resultMessage.innerHTML = `
+                    <h2>You answered ${score}/${quizData.length} questions correctly</h2>
+                    <button onclick="startQuiz()">Reload</button>
+                `;
+            }
         }
     }
 });
