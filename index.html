@@ -127,10 +127,6 @@
                 font-size: 32px;
             }
 
-            #Sources{
-                display: none;
-            }
-
             #block{
                 display: block;
             }
@@ -139,11 +135,24 @@
                 font-size: 12px;
             }
 
+            #video-background {
+                position: fixed; /* Fix the video to the background */
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1; /* Ensure the video stays behind other content */
+                opacity: 0; /* Optional: Make the video slightly transparent */
+            }
+
         }
 
     </style>
 </head>
 <body>
+<div id="video-background">
+    <iframe id="youtube-video" width="100%" height="100%" src="https://www.youtube.com/watch?v=egVAW6l_QU8&start=41" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
 <div class="gradient-container">
     <h1 id="title" align="center">Herzlich Willkommen zur deinem Geburtstagsgeschenk! 🎉</h1>
     <container class="flex">
@@ -152,7 +161,7 @@
                 Happy Birthday To You! Happy Birthday To You Happy Birthday LIEBE GINA Happy Birthday To You!
             </div>
             <h2 align="center">Da wir leider nicht bei dir sein können, wirst du erst zu Weihnachten hier erfahren, was dein Geburtstagsgeschenk ist 🤭</h2>
-            <img src="./images/Sister.png" alt="SisterImage" align="center">
+            <img src="./images/Sister.jpeg" alt="SisterImage" align="center">
         </container>
         <container>
             <h2 align="center">🤫 Leider musst du dich noch etwas gedulden. 🤫</h2>
