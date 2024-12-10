@@ -101,28 +101,7 @@
         }
 
         img {
-            display: block;
             margin: 0 auto;
-        }
-
-        /* Image positioning */
-        .left-image, .right-image {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: -1;
-        }
-
-        .left-image {
-            left: 0;
-            width: 15%;
-            height: auto;
-        }
-
-        .right-image {
-            right: 0;
-            width: 15%;
-            height: auto;
         }
 
         /* Responsiveness */
@@ -229,8 +208,6 @@
 </head>
 <body>
 <div class="gradient-container">
-    <img src="./images/ballons.png" alt="Left Image" class="left-image">
-    <img src="./images/ballons.png" alt="Right Image" class="right-image">
     <h1 id="title" align="center">Herzlich Willkommen zur deinem Geburtstagsgeschenk! 🎉</h1>
     <container class="flex">
         <container>
@@ -238,7 +215,9 @@
                 Happy Birthday To You! Happy Birthday To You Happy Birthday LIEBE GINA Happy Birthday To You!
             </div>
             <h3 align="center">Da wir leider nicht bei dir sein können, wirst du erst zu Weihnachten hier erfahren, was dein Geburtstagsgeschenk ist 🤭</h3>
+            <img src="./images/ballons.png" alt="Left Image" align="left">
             <img src="./images/Sister.jpeg" alt="Sister Image" align="center">
+            <img src="./images/ballons.png" alt="Right Image" align="right">
         </container>
 
         <container>
