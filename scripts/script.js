@@ -88,22 +88,15 @@ function getSelected() {
 submitBtn.addEventListener('click', () => {
     const answer = getSelected();
     if (answer) {
-        console.log(`Selected answer: ${answer}`);
         if (answer === quizData[currentQuiz].correct) {
-            score++;
-            document.getElementById("submit").classList.remove('red');  // Remove red class if answer is correct
-            document.getElementById("submit").classList.add('green');   // Add green class for correct answer
-            console.log("Correct! Green class added.");
-        } else {
-            document.getElementById("submit").classList.remove('green');     // Add red class for wrong answer
-            document.getElementById("submit").classList.add('red'); // Remove green class if answer is wrong
-            console.log("Wrong! Red class added.");
+            score++;  // Increase the score if the answer is correct
         }
 
-        currentQuiz++;
+        currentQuiz++; // Move to the next question
 
+        // After answering, either move to the next question or show the result
         if (currentQuiz < quizData.length) {
-            loadQuiz();
+            loadQuiz(); // Load the next quiz question
         } else {
             quiz.style.display = "none"; // Hide quiz content
             resultMessage.style.display = "block"; // Show result message
