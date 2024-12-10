@@ -91,12 +91,12 @@ submitBtn.addEventListener('click', () => {
         console.log(`Selected answer: ${answer}`);
         if (answer === quizData[currentQuiz].correct) {
             score++;
-            submitBtn.classList.remove('red');  // Remove red class if answer is correct
-            submitBtn.classList.add('green');   // Add green class for correct answer
+            document.getElementById("submit").classList.remove('red');  // Remove red class if answer is correct
+            document.getElementById("submit").classList.add('green');   // Add green class for correct answer
             console.log("Correct! Green class added.");
         } else {
-            submitBtn.classList.add('red');     // Add red class for wrong answer
-            submitBtn.classList.remove('green');  // Remove green class if answer is wrong
+            document.getElementById("submit").classList.remove('green');     // Add red class for wrong answer
+            document.getElementById("submit").classList.add('red'); // Remove green class if answer is wrong
             console.log("Wrong! Red class added.");
         }
 
