@@ -79,22 +79,27 @@ function getSelected() {
 
 
 submitBtn.addEventListener('click', () => {
-    const answer = getSelected()
-    if(answer) {
-       if(answer === quizData[currentQuiz].correct) {
-           score++
-       }
+    const answer = getSelected();
+    if (answer) {
+        if (answer === quizData[currentQuiz].correct) {
+            score++;
+            submitBtn.classList.remove('red');
+            submitBtn.classList.add('green');
+        } else {
+            submitBtn.classList.add('red'); 
+            submitBtn.classList.remove('green');
+        }
 
-       currentQuiz++
+        currentQuiz++;
 
-       if(currentQuiz < quizData.length) {
-           loadQuiz()
-       } else {
-           quiz.innerHTML = `
-           <h2>You answered ${score}/${quizData.length} questions correctly</h2>
-
-           <button onclick="location.reload()">Reload</button>
-           `
-       }
+        if (currentQuiz < quizData.length) {
+            loadQuiz();
+            submitBtn.classList.remove('red', 'green');
+        } else {
+            quiz.innerHTML = `
+                <h2>You answered ${score}/${quizData.length} questions correctly</h2>
+                <button onclick="location.reload()">Reload</button>
+            `;
+        }
     }
-})
+});
