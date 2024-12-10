@@ -16,12 +16,12 @@ const quizData = [
         correct: "c",
     },
     {
-        question: "Was war Toni's höchster League of Legends Rank?",
+        question: "Was war Toni's höchster Overwatch Rank?",
         a: "Silber",
         b: "Gold",
         c: "Platin",
         d: "Diamond",
-        correct: "d",
+        correct: "c",
     },
     {
         question: "Wielange arbeitet Vicky schon bei BASF?",
@@ -52,6 +52,7 @@ function startQuiz() {
     currentQuiz = 0;
     resultMessage.style.display = "none"; // Hide result message at the start
     quiz.style.display = "block"; // Show the quiz content
+    console.log(submitBtn);  // Check if this is pointing to the right button
     loadQuiz();
 }
 
