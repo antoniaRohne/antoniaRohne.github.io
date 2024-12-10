@@ -29,15 +29,34 @@
             }
         }
 
+        .left-image, .right-image {
+            position: absolute;
+            top: 50%; /* Vertically center the images */
+            transform: translateY(-50%); /* Center images relative to their height */
+            z-index: -1; /* Place images behind the content */
+        }
+
+        .left-image {
+            left: 0; /* Align image to the left */
+            width: 15%; /* Adjust the width as needed */
+        }
+
+        .right-image {
+            right: 0; /* Align image to the right */
+            width: 15%; /* Adjust the width as needed */
+        }
+
+        /* Ensure the content is centered and unaffected by images */
         .gradient-container {
             width: 96%;
             height: 1500px;
-            margin: 0px auto;
+            margin: 0 auto;
             background: linear-gradient(to bottom, #3C5CA4, #9FC5E8);
             padding: 20px;
             text-align: center;
             border-radius: 10px;
             color: white;
+            position: relative; /* Keep the content in flow */
         }
 
         .hidden{
@@ -205,18 +224,20 @@
 <body>
 </div>
 <div class="gradient-container">
+    <img src="./images/ballons.png" alt="Left Image" class="left-image">
+    <img src="./images/ballons.png" alt="Right Image" class="right-image">
     <h1 id="title" align="center">Herzlich Willkommen zur deinem Geburtstagsgeschenk! 🎉</h1>
     <container class="flex">
         <container>
             <div class="typewriter-container" id="typewriter">
                 Happy Birthday To You! Happy Birthday To You Happy Birthday LIEBE GINA Happy Birthday To You!
             </div>
-            <h3 align="center">Da wir leider nicht bei dir sein können, wirst du erst zu Weihnachten hier erfahren, was dein Geburtstagsgeschenk ist 🤭</h2>
+            <h3 align="center">Da wir leider nicht bei dir sein können, wirst du erst zu Weihnachten hier erfahren, was dein Geburtstagsgeschenk ist 🤭</h3>
                 <img src="./images/Sister.jpeg" alt="SisterImage" align="center">
         </container>
 
         <container>
-            <h3 align="center">🤫 Leider musst du dich noch etwas gedulden 🤫</h2>
+            <h3 align="center">🤫 Leider musst du dich noch etwas gedulden 🤫</h3>
                 <p align="center">Komm hierher zurück für mehr Informationen!</p>
         </container>
     </container>
