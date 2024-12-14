@@ -104,7 +104,7 @@ submitBtn.addEventListener('click', () => {
             // Check if the user answered all questions correctly
             if (score === quizData.length) {
                 resultMessage.innerHTML = `
-                    <h2>Du kannst es fühlen, aber nicht behalten</h2>
+                    <h2>MMXV</h2>
                     <button onclick="startQuiz()">Neu laden</button>
                 `;
             } else {
