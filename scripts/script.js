@@ -1,34 +1,34 @@
 const quizData = [
     {
-        question: "Durch welche Serie wurde der Ausspruch \"Winter is coming\" (Der Winter naht) berühmt?",
-        a: "House of cards",
-        b: "Herr der Ringe",
-        c: "Game of Thrones",
-        d: "House of Dragons",
-        correct: "c",
-    },
-    {
-        question: "Welche Farbe hat ein Schneekristall?",
-        a: "weiß",
-        b: "durchsichtig",
-        c: "hellblau",
-        d: "grau",
+        question: "Wie lautet der längste Ortsname Europas?",
+        a: "Ahoundollyngroundershirewestllyngoughlands",
+        b: "Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch",
+        c: "Tintraycherfilllosykoromountainken",
+        d: "Folkinshiredroundedwestminstercubbytown",
         correct: "b",
     },
     {
-        question: "\"Snö\" sagt man in welchem Land zu Schnee?\n",
-        a: "Schweden",
-        b: "Finnland",
-        c: "Norwegen",
-        d: "Dänemark",
-        correct: "a",
+        question: "Welche dieser landesspezifischen Regeln ist frei erfunden?",
+        a: "In Singapur muss man sich Kaugummis vom Arzt verordnen lassen.",
+        b: "In Großbritannien ist es verboten, im Parlament zu sterben.",
+        c: "Auf den Philippinen darf in Karaoke-Bars, Frank Sinatras ´My Way` nicht gesungen werden.",
+        d: "In Island ist das Küssen in der Blauen Lagune verboten.",
+        correct: "d",
     },
     {
-        question: "In welchen Ländern fällt der meiste Schnee?",
-        a: "Japan und Kanada",
-        b: "Finnland und Grönland",
-        c: "Finnland und Kanada",
-        d: "Georginen und Schweden",
+        question: "Knapp ein Drittel der Oberfläche Deutschlands ist mit... bedeckt.",
+        a: "Städte",
+        b: "Straßen",
+        c: "Wälder",
+        d: "Wasser",
+        correct: "c",
+    },
+    {
+        question: "Wo wird mehr Guinness als in Irland konsumiert?",
+        a: "Nigeria",
+        b: "Deutschland",
+        c: "Neuseeland",
+        d: "Kanada",
         correct: "a",
     },
 ];
@@ -104,7 +104,7 @@ submitBtn.addEventListener('click', () => {
             // Check if the user answered all questions correctly
             if (score === quizData.length) {
                 resultMessage.innerHTML = `
-                    <h2>MMXV</h2>
+                    <h2>404-LOCATION NOT FOUND</h2>
                     <button onclick="startQuiz()">Neu laden</button>
                 `;
             } else {
