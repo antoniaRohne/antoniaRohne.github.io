@@ -40,10 +40,7 @@
             text-align: center;
             padding: 0 20px; /* Padding for left and right on small screens */
             min-height: 100vh; /* Ensure it takes at least full viewport height */
-        }
-
-        .col-12 {
-            background: linear-gradient(to bottom, #1bc4f2, #3C5CA4) !important;
+            box-sizing: border-box; /* Prevent padding from affecting width/height calculation */
         }
 
         .inner h1, .inner h3 {
@@ -56,6 +53,7 @@
                 height: auto; /* Allow the height to adjust on smaller screens */
                 min-height: 80vh; /* Ensure it takes at least 80% of the viewport height */
                 padding: 0 15px; /* Reduce padding on smaller screens */
+                text-align: center; /* Ensure text is centered */
             }
 
             .inner h1 {
