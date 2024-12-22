@@ -22,28 +22,27 @@
             height: 300px; /* Set a fixed height for all images */
             object-fit: cover; /* Ensures that images are scaled to fill the area without distortion */
         }
-        
-        .video-content{
+
+        .video-content {
             width: 90%;
         }
-        
-        h3{
-            color : whitesmoke;
+
+        h3 {
+            color: whitesmoke;
         }
 
-        /* Make the video-container adjust to the full size of the screen */
         #video-container {
             width: 100%;
-            height: 100vh; /* Full height of the viewport */
-            background: linear-gradient(to bottom, #3C5CA4, #1bc4f2) !important;
+            background: linear-gradient(to bottom, #3C5CA4, #1bc4f2); /* Apply gradient only to the visible area */
             display: flex;
             justify-content: center; /* Center content horizontally */
             align-items: center; /* Center content vertically */
             text-align: center;
             padding: 0 20px; /* Padding for left and right on small screens */
+            min-height: 100vh; /* Ensure it takes at least full viewport height */
         }
-        
-        .col-12{
+
+        .col-12 {
             background: linear-gradient(to bottom, #1bc4f2, #3C5CA4) !important;
         }
 
@@ -55,6 +54,7 @@
         @media (max-width: 768px) {
             #video-container {
                 height: auto; /* Allow the height to adjust on smaller screens */
+                min-height: 80vh; /* Ensure it takes at least 80% of the viewport height */
                 padding: 0 15px; /* Reduce padding on smaller screens */
             }
 
@@ -67,23 +67,32 @@
             }
         }
 
-        .full-screen-item {
-            height: 100vh; /* Make the portfolio item take full viewport height */
-            display: flex;
-            align-items: center; /* Vertically center the content */
-            justify-content: center; /* Horizontally center the content */
-        }
-
         .full-screen-item .image img {
             width: 100%; /* Ensure the image fills the container */
             height: auto;
         }
 
-        .full-screen-item .hover-content {
-            position: absolute;
-            text-align: center;
-            color: white; /* Adjust text color to contrast against image */
+        .full-screen-item {
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            align-items: center; /* Vertically center content */
+            justify-content: center; /* Horizontally center content */
+            position: relative; /* To position content absolutely inside */
         }
+
+        .full-screen-item .hover-effect {
+            width: 100%; /* Ensure the hover-effect takes up full width */
+            position: absolute; /* Make sure it covers the entire container */
+            top: 0;
+            left: 0;
+            padding: 20px; /* Optional padding to ensure text is not sticking to the edges */
+        }
+
+        .full-screen-item .hover-content {
+            width: 100%;
+
+        /* Make sure content spans the full width */
+
 
     </style>
 </head>
@@ -109,7 +118,8 @@
                         <div class="hover-effect">
                             <div class="hover-content">
                                 <h1><em>Portugal</em></h1>
-                                <p>Erleben Sie ein Paradies aus traumhaften Stränden, faszinierender Kultur und köstlicher Küche.</p>
+                                <p>Erleben Sie ein Paradies aus traumhaften Stränden, faszinierender Kultur und
+                                    köstlicher Küche.</p>
                             </div>
                         </div>
                         <div class="image">
@@ -124,7 +134,8 @@
                         <div class="hover-effect">
                             <div class="hover-content">
                                 <h1><em>Frankreich</em></h1>
-                                <p>Genießen Sie die malerischen Weinregionen, die charmanten Dörfer und die weltberühmte Kunst- und Modekultur.</p>
+                                <p>Genießen Sie die malerischen Weinregionen, die charmanten Dörfer und die weltberühmte
+                                    Kunst- und Modekultur.</p>
                             </div>
                         </div>
                         <div class="image">
@@ -139,7 +150,8 @@
                         <div class="hover-effect">
                             <div class="hover-content">
                                 <h1><em>Kroatien</em></h1>
-                                <p>Entdecken Sie kristallklares Wasser, historische Küstenstädte und unberührte Inseln in einem einzigartigen Naturparadies.</p>
+                                <p>Entdecken Sie kristallklares Wasser, historische Küstenstädte und unberührte Inseln
+                                    in einem einzigartigen Naturparadies.</p>
                             </div>
                         </div>
                         <div class="image">
@@ -154,7 +166,8 @@
                         <div class="hover-effect">
                             <div class="hover-content">
                                 <h1><em>Irland</em></h1>
-                                <p>Begeben Sie sich in die grünen Hügel, imposanten Klippen und die lebendige Kultur von Dublin bis hin zu den verwunschenen Burgen des Landes.</p>
+                                <p>Begeben Sie sich in die grünen Hügel, imposanten Klippen und die lebendige Kultur von
+                                    Dublin bis hin zu den verwunschenen Burgen des Landes.</p>
                             </div>
                         </div>
                         <div class="image">
@@ -169,7 +182,8 @@
                         <div class="hover-effect">
                             <div class="hover-content">
                                 <h1><em>Zypern</em></h1>
-                                <p>Erleben Sie traumhafte Strände, antike Ruinen und eine reiche Geschichte, die von verschiedenen Kulturen geprägt ist.</p>
+                                <p>Erleben Sie traumhafte Strände, antike Ruinen und eine reiche Geschichte, die von
+                                    verschiedenen Kulturen geprägt ist.</p>
                             </div>
                         </div>
                         <div class="image">
@@ -194,7 +208,6 @@
                 </div>
             </div>
         </div>
-        <!-- New Row with one full-width column -->
         <div class="row">
             <div class="col-12">
                 <div class="portfolio-item full-screen-item">
@@ -202,9 +215,10 @@
                         <div class="hover-effect">
                             <div class="hover-content">
                                 <h1><em>Mehr Details</em></h1>
-                                <p>Wir wollen zusammen mit dir 2025 Erinnerungen schaffen! 
-                                    Wir schenken dir einen 3-4 Tage Urlaub und übernehmen die Reise- und Unterkunftskosten :)
-                                Genauere Infos wie Datum und Ziel steht noch aus!</p>
+                                <p>Wir wollen zusammen mit dir 2025 Erinnerungen schaffen!
+                                    Wir schenken dir einen 3-4 Tage Urlaub und übernehmen die Reise- und
+                                    Unterkunftskosten :)
+                                    Genauere Infos wie Datum und Ziel steht noch aus!</p>
                             </div>
                         </div>
                     </div>
