@@ -22,11 +22,45 @@
             height: 300px; /* Set a fixed height for all images */
             object-fit: cover; /* Ensures that images are scaled to fill the area without distortion */
         }
+        
+        .video-content{
+            width: 90%;
+        }
+        
+        h3{
+            color : whitesmoke;
+        }
 
+        /* Make the video-container adjust to the full size of the screen */
         #video-container {
-            background-color: #3C5CA4 !important; 
-            padding-left: 20px !important;  
-            padding-right: 20px !important; 
+            width: 100%;
+            height: 100vh; /* Full height of the viewport */
+            background: linear-gradient(to bottom, #3C5CA4, #9FC5E8) !important;
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            text-align: center;
+            padding: 0 20px; /* Padding for left and right on small screens */
+        }
+
+        .inner h1, .inner h3 {
+            margin: 10px;
+        }
+
+        /* Add media query for smaller screen sizes (e.g., mobile) */
+        @media (max-width: 768px) {
+            #video-container {
+                height: auto; /* Allow the height to adjust on smaller screens */
+                padding: 0 15px; /* Reduce padding on smaller screens */
+            }
+
+            .inner h1 {
+                font-size: 24px; /* Adjust h1 font size for smaller screens */
+            }
+
+            .inner h3 {
+                font-size: 18px; /* Adjust h3 font size for smaller screens */
+            }
         }
     </style>
 </head>
@@ -39,7 +73,7 @@
         <div class="inner">
             <h1><em>Willkommen zu deinen Geburtstagsgeschenk!</em></h1>
             <h1>Schwesternurlaub 2025</h1>
-            <h3>Scrollen!</h3>
+            <h3>Übernahme von Reise- und Unterkunftskosten</h3>
         </div>
     </div>
 </div>
