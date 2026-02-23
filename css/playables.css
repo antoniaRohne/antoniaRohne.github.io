@@ -436,3 +436,125 @@ h1 {
     width: 145px;
   }
 }
+
+@media (max-width: 600px), (max-aspect-ratio: 9/16) {
+  .page-wrap {
+    padding-top: 20px;
+    padding-bottom: 30px;
+  }
+
+  .hero-panel {
+    padding: 18px;
+    border-radius: 18px;
+    margin-bottom: 18px;
+  }
+
+  .hero-layout {
+    gap: 14px;
+  }
+
+  .hero-photo-wrap {
+    justify-self: center;
+    width: 100%;
+  }
+
+  .hero-photo {
+    width: min(52vw, 170px);
+  }
+
+  .hero-cta {
+    min-height: 34px;
+    font-size: 0.82rem;
+  }
+
+  .eyebrow {
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
+  }
+
+  h1 {
+    margin: 6px 0 8px;
+    font-size: clamp(1.6rem, 7.5vw, 2.15rem);
+    line-height: 1.1;
+  }
+
+  .hero-copy {
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+
+  .hero-tech {
+    margin-top: 8px;
+    font-size: 0.88rem;
+  }
+
+  .playables-grid {
+    gap: 14px;
+  }
+
+  .slot-header {
+    padding: 12px;
+  }
+
+  .game-title {
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .game-title span {
+    font-size: 1.12rem;
+    line-height: 1.22;
+  }
+
+  .thumb-grid {
+    padding: 12px;
+    gap: 9px;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .playable-thumb,
+  .playable-still {
+    width: min(41vw, 158px);
+    border-radius: 12px;
+    scroll-snap-align: start;
+  }
+
+  .playable-thumb::after {
+    width: 40px;
+    height: 40px;
+  }
+
+  .further-games {
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 14px;
+  }
+
+  .further-games h2 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+
+  .further-games ul {
+    gap: 7px;
+  }
+
+  .further-games li span {
+    font-size: 0.95rem;
+  }
+
+  .playable-dialog {
+    width: calc(100vw - 12px);
+    max-height: 96vh;
+    border-radius: 12px;
+  }
+
+  .dialog-head {
+    padding: 8px 10px;
+  }
+
+  .dialog-head h3 {
+    font-size: 1rem;
+  }
+}
