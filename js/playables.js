@@ -1,6 +1,5 @@
 (() => {
   const dialog = document.getElementById("playableDialog");
-  const dialogTitle = document.getElementById("dialogTitle");
   const dialogFrame = document.getElementById("dialogFrame");
   const dialogImage = document.getElementById("dialogImage");
   const thumbs = Array.from(document.querySelectorAll(".playable-thumb"));
@@ -9,10 +8,7 @@
 
   const openPlayable = (btn) => {
     const url = btn.dataset.url;
-    const title = btn.dataset.title || "Playable Preview";
-    if (!dialog || !dialogTitle || !dialogFrame || !dialogImage || !url) return;
-
-    dialogTitle.textContent = title;
+    if (!dialog || !dialogFrame || !dialogImage || !url) return;
     dialogImage.style.display = "none";
     dialogImage.src = "";
     dialogFrame.style.display = "block";
@@ -22,10 +18,7 @@
 
   const openScreenshot = (img) => {
     const src = img.currentSrc || img.src;
-    const title = img.alt || "Screenshot Preview";
-    if (!dialog || !dialogTitle || !dialogFrame || !dialogImage || !src) return;
-
-    dialogTitle.textContent = title;
+    if (!dialog || !dialogFrame || !dialogImage || !src) return;
     dialogFrame.style.display = "none";
     dialogFrame.src = "about:blank";
     dialogImage.src = src;

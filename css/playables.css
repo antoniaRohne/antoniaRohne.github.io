@@ -301,6 +301,7 @@ h1 {
 .playable-thumb {
   position: relative;
   width: 160px;
+  flex: 0 0 auto;
   border: 2px solid #ffffff;
   border-radius: 14px;
   padding: 0;
@@ -338,6 +339,7 @@ h1 {
 
 .playable-still {
   width: 160px;
+  flex: 0 0 auto;
   aspect-ratio: 9 / 16;
   object-fit: cover;
   display: block;
@@ -371,12 +373,8 @@ h1 {
   padding: 10px 14px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-}
-
-.dialog-head h3 {
-  margin: 0;
 }
 
 .btn-close {
@@ -552,9 +550,5 @@ h1 {
 
   .dialog-head {
     padding: 8px 10px;
-  }
-
-  .dialog-head h3 {
-    font-size: 1rem;
   }
 }
